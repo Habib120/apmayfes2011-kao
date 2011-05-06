@@ -163,7 +163,7 @@ int main ()
   cv::Point2f center;
   cv::Mat mat,dst;
   cv::Size sz,cam_sz;
-  hogehoge;
+
   cv::VideoCapture cap(CV_CAP_ANY);
   if(!cap.isOpened()) 
         return -1;
