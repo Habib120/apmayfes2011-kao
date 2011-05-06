@@ -38,7 +38,7 @@ double predict(IplImage *src)
             //input = cvLoadImage( "./face_0082.jpg" , CV_LOAD_IMAGE_GRAYSCALE);
             //src = cvCreateImage(cvSize(128,128), IPL_DEPTH_8U, 1);
 			//dst = cv/CreateImage(cvSize(128,128), IPL_DEPTH_8U, 1);
-            int size = 400;
+            int size = 400; //çHì°éQè„ÅI
 
             //cvResize(input, src, CV_INTER_LINEAR); //âÊëúÇèkè¨
             //end = clock();
