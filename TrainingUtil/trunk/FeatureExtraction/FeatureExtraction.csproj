@@ -1,0 +1,201 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{E2ED9FFC-258B-4DB3-9B43-4EF82AFE8BC7}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>FeatureExtraction</RootNamespace>
+    <AssemblyName>FeatureExtraction</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>image-inserer-icone-3816.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Emgu.CV, Version=1.5.0.1, Culture=neutral, PublicKeyToken=7281126722ab4438, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Emgu\libemgucv-2.1.0.793-win32\bin\Emgu.CV.dll</HintPath>
+    </Reference>
+    <Reference Include="Emgu.CV.DebuggerVisualizers">
+      <HintPath>..\..\..\..\..\..\..\Emgu\libemgucv-2.1.0.793-win32\bin\Emgu.CV.DebuggerVisualizers.dll</HintPath>
+    </Reference>
+    <Reference Include="Emgu.CV.ML, Version=1.0.0.0, Culture=neutral, PublicKeyToken=a288bfcf2d37d93b, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Emgu\libemgucv-2.1.0.793-win32\bin\Emgu.CV.ML.dll</HintPath>
+    </Reference>
+    <Reference Include="Emgu.CV.UI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=987a5607bf4f198c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Emgu\libemgucv-2.1.0.793-win32\bin\Emgu.CV.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="Emgu.Util, Version=1.1.3345.35405, Culture=neutral, PublicKeyToken=9ce8ff41c3b3d7f5, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Emgu\libemgucv-2.1.0.793-win32\bin\Emgu.Util.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Extractors\AssemblyExtractor.cs" />
+    <Compile Include="Compressors\CompressorTable.cs" />
+    <Compile Include="Extractors\INormalizer.cs" />
+    <Compile Include="Compressors\ICompressor.cs" />
+    <Compile Include="Extractors\Normalizers\NormalizerNone.cs" />
+    <Compile Include="Extractors\Normalizers\NormalizerSimple.cs" />
+    <Compile Include="Compressors\PCACompressor.cs" />
+    <Compile Include="LoadingWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoadingWindow.Designer.cs">
+      <DependentUpon>LoadingWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NumberInputWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NumberInputWindow.Designer.cs">
+      <DependentUpon>NumberInputWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\AlertdDialog.cs" />
+    <Compile Include="Extractors\BinaryExtractor.cs" />
+    <Compile Include="Extractors\AssemblyExtractorTable.cs" />
+    <Compile Include="Extractors\BinaryExtractorTable.cs" />
+    <Compile Include="Extractors\Concrete\BrightnessHist.cs" />
+    <Compile Include="Extractors\Concrete\Gabor.cs" />
+    <Compile Include="Extractors\Concrete\GradientHist.cs" />
+    <Compile Include="Extractors\Concrete\Haar.cs" />
+    <Compile Include="Extractors\Concrete\LaplacianHist.cs" />
+    <Compile Include="Extractors\ExtractorSchema.cs" />
+    <Compile Include="Faces\FaceData.cs" />
+    <Compile Include="Faces\FaceDataTable.cs" />
+    <Compile Include="Faces\Label.cs" />
+    <Compile Include="FeaturePoints\FeaturePointData.cs" />
+    <Compile Include="FeaturePoints\FeaturePointDataTable.cs" />
+    <Compile Include="MainWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainWindow.Designer.cs">
+      <DependentUpon>MainWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Extractors\IExtractor.cs" />
+    <Compile Include="MLWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MLWindow.Designer.cs">
+      <DependentUpon>MLWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ML\AdaBoost.cs" />
+    <Compile Include="ML\IMLMethod.cs" />
+    <Compile Include="ML\MLMethodTable.cs" />
+    <Compile Include="ML\RandomTree.cs" />
+    <Compile Include="ML\SVM.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="LoadingWindow.resx">
+      <DependentUpon>LoadingWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainWindow.resx">
+      <DependentUpon>MainWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MLWindow.resx">
+      <DependentUpon>MLWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NumberInputWindow.resx">
+      <DependentUpon>NumberInputWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Extractors\Concrete\bin\dummy\dummy_extractor.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Compressors\bin\PCA.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="image-inserer-icone-3816.ico" />
+    <Content Include="ML\bin\svm-predict.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ML\bin\svm-scale.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ML\bin\svm-train.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ML\bin\SVM.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\agent_32.png" />
+    <Content Include="Resources\arrowright32.png" />
+    <Content Include="Resources\glasses.png" />
+    <Content Include="tache-icone-6813.ico" />
+    <None Include="Resources\leftarrow32.png" />
+    <Content Include="Resources\man.png" />
+    <Content Include="Resources\smile32.png" />
+    <Content Include="Resources\stop32.png" />
+    <Content Include="Resources\wand32.png" />
+    <Content Include="Resources\woman.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Stats\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
