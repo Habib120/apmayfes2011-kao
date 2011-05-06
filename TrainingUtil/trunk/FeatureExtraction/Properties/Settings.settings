@@ -1,0 +1,9 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="FeatureExtraction.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="BINARY_EXTRACTOR_DIRECTORY" Type="System.String" Scope="User">
+      <Value Profile="(Default)">%APP_BASE_DIR%\Extractors\Concrete\bin\</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
