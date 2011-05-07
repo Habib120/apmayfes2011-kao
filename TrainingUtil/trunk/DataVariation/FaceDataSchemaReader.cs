@@ -31,8 +31,15 @@ namespace DataVariation
 
             foreach (var item in root.Element("data").Elements("item"))
             {
-                FaceData data = new FaceData(item);
-                ret.Add(data);
+                try
+                {
+                    FaceData data = new FaceData(item);
+                    ret.Add(data);
+                }
+                catch
+                {
+                    continue; //エラーが出ても無視する
+                }
             }
 
             return ret;

@@ -6,6 +6,7 @@ using System.Xml.Linq;
 using Emgu.CV;
 using Emgu.CV.CvEnum;
 using Emgu.CV.Structure;
+using System.IO;
 
 namespace DataVariation
 {
@@ -19,10 +20,33 @@ namespace DataVariation
     /// </summary>
     public class FaceData
     {
-        public Image<Bgr, byte> Image;
         public string Filename;
         public string Group;
         public LabelInfo LabelInfo;
+        protected Image<Bgr, byte> _image;
+        public Image<Bgr, byte> Image
+        {
+            get
+            {
+                if (_image != null)
+                {
+                    return _image;
+                }
+                else if (Filename != null)
+                {
+                    _image = new Image<Bgr, byte>(Filename);
+                    return _image;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            set
+            {
+                _image = value;
+            }
+        }
 
         public FaceData()
         {
@@ -38,14 +62,18 @@ namespace DataVariation
             else
             {
                 this.LabelInfo = new LabelInfo(elem.Element("labels"));
+
+                this.Filename = elem.Element("filename").Value;
+                if (!File.Exists(this.Filename))
+                {
+                    throw new Exception("File does not exist");
+                }
             }
 
             if (elem.Element("group") != null)
             {
                 this.Group = elem.Element("group").Value;
             }
-
-
 
         }
 

@@ -4,6 +4,10 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using DataVariation;
+using Emgu.CV;
+using Emgu.CV.CvEnum;
+using Emgu.CV.Structure;
+using System.Windows.Forms;
 
 namespace TestProject
 {
@@ -26,7 +30,22 @@ namespace TestProject
 
             //画像読み込みのテスト
             Assert.IsTrue(schema.Count() > 0);
-            
+            MessageBox.Show("画像読み込みのテストを開始します");
+
+            CvInvoke.cvNamedWindow("dataschema_read");
+            CvInvoke.cvShowImage("dataschema_read", schema.First().Image);
+
+            var r = MessageBox.Show("画像読み込みは正しく行われていますか？",
+                "test",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
+
+            Assert.IsTrue(r == DialogResult.Yes);
+        }
+
+        [TestMethod]
+        public void WriteTest()
+        {
         }
     }
 }
