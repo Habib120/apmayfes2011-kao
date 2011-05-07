@@ -27,26 +27,18 @@ double x,y,z,rad;
 
 double predict(IplImage *src)
 {
-			//cvNamedWindow("test1",1);
-			//cvShowImage("test1",&dimg);
-            //clock_t start, end;
-            //cout << "‰Šú‰»: ";
-            //start = clock();
-            //IplImage *src=0;
-			//IplImage *input=0;
-			//input = &dimg;
-            //input = cvLoadImage( "./face_0043.jpg" , CV_LOAD_IMAGE_GRAYSCALE);
-            //src = cvCreateImage(cvSize(128,128), IPL_DEPTH_8U, 1);
-			//dst = cv/CreateImage(cvSize(128,128), IPL_DEPTH_8U, 1);
-            int size = 400;
-
-	//IplImage *src=0;
+	//cvNamedWindow("test1",1);
+	//cvShowImage("test1",&dimg);
+    //clock_t start, end;
+    //cout << "‰Šú‰»: ";
+    //start = clock();
+    //IplImage *src=0;
 	//IplImage *input=0;
 	//input = &dimg;
-	//input = cvLoadImage( "./face_0082.jpg" , CV_LOAD_IMAGE_GRAYSCALE);
-	//src = cvCreateImage(cvSize(128,128), IPL_DEPTH_8U, 1);
+    //input = cvLoadImage( "./face_0043.jpg" , CV_LOAD_IMAGE_GRAYSCALE);
+    //src = cvCreateImage(cvSize(128,128), IPL_DEPTH_8U, 1);
 	//dst = cv/CreateImage(cvSize(128,128), IPL_DEPTH_8U, 1);
-	int size = 400; //20*20
+    int size = 400;
 
 	//cvResize(input, src, CV_INTER_LINEAR); //‰æ‘œ‚ðk¬
 	
