@@ -5,7 +5,7 @@
 #include <highgui.h>
 #include <ctype.h>
 #include <iostream>
-#include <sm_api_cxx.h>
+//#include <sm_api_cxx.h>
 #include <conio.h>
 #include "sm_api.h"
 #include <cmath>
@@ -20,15 +20,25 @@ using std::endl;
 using std::cerr;
 using std::cin;
 using std::string;
-using namespace sm::faceapi;
+//using namespace sm::faceapi;
 
 double x,y,z,rad;
 
 
 double predict(IplImage *src)
 {
-	//cvNamedWindow("test1",1);
-	//cvShowImage("test1",&dimg);
+			//cvNamedWindow("test1",1);
+			//cvShowImage("test1",&dimg);
+            //clock_t start, end;
+            //cout << "初期化: ";
+            //start = clock();
+            //IplImage *src=0;
+			//IplImage *input=0;
+			//input = &dimg;
+            //input = cvLoadImage( "./face_0043.jpg" , CV_LOAD_IMAGE_GRAYSCALE);
+            //src = cvCreateImage(cvSize(128,128), IPL_DEPTH_8U, 1);
+			//dst = cv/CreateImage(cvSize(128,128), IPL_DEPTH_8U, 1);
+            int size = 400;
 
 	//IplImage *src=0;
 	//IplImage *input=0;
@@ -87,14 +97,14 @@ double predict(IplImage *src)
 	cvReleaseMat(&mat);
 	cvReleaseMat(&smat);
 
-	/*****RandomTrees*****/
-	CvMat *test = cvCreateMat(1, size*40, CV_32FC1);
-	double r;
-	CvERTrees ert;
-	ert.load("./test.xml");
-	//cout << ert.get_tree_count() << endl;
-	r = ert.predict(test);
-	//cout << "認識結果：" << r << endl;
+			/*****RandomTrees*****/
+			CvMat *test = cvCreateMat(1, size*40, CV_32FC1);
+			double r;
+			CvERTrees ert;
+			ert.load("./test2.xml");
+			//cout << ert.get_tree_count() << endl;
+			r = ert.predict(test);
+			cout << "認識結果：" << r << endl;
 
 	cvReleaseMat(&feat);
 
