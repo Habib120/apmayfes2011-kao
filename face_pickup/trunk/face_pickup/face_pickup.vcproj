@@ -41,6 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
+				AdditionalIncludeDirectories="&quot;C:\Program Files\SeeingMachines\FaceTrackingAPI_NC 3.2\API\include&quot;;C:\OpenCV2.1\include\opencv"
 				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -62,6 +63,7 @@
 				Name="VCLinkerTool"
 				AdditionalDependencies="cv210d.lib cvaux210d.lib cxcore210d.lib cxts210.lib highgui210d.lib ml210d.lib opencv_ffmpeg210d.lib smftcpp.lib smft32.lib $(SM_API_LIB_NAME)"
 				LinkIncremental="2"
+				AdditionalLibraryDirectories="&quot;C:\Program Files\SeeingMachines\FaceTrackingAPI_NC 3.2\Wrappers\C++\lib&quot;;&quot;C:\Program Files\SeeingMachines\FaceTrackingAPI_NC 3.2\API\bin&quot;;C:\OpenCV2.1\build\lib\Release;C:\OpenCV2.1\build\lib\Debug"
 				GenerateDebugInformation="true"
 				SubSystem="1"
 				TargetMachine="1"
@@ -195,6 +197,18 @@
 			Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav"
 			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
 			>
+		</Filter>
+		<Filter
+			Name="test"
+			>
+			<File
+				RelativePath=".\face_0000.jpg"
+				>
+			</File>
+			<File
+				RelativePath=".\featurepoints.txt"
+				>
+			</File>
 		</Filter>
 	</Files>
 	<Globals>
