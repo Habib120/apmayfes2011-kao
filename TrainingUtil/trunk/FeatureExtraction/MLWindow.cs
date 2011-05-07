@@ -102,7 +102,7 @@ namespace FeatureExtraction
         {
             using (FolderBrowserDialog fDialog = new FolderBrowserDialog())
             {
-                fDialog.RootFolder = Environment.SpecialFolder.MyDocuments;
+                fDialog.SelectedPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
                 if (fDialog.ShowDialog() == DialogResult.OK)
                 {
                     LoadingWindow lWindow = new LoadingWindow();
@@ -122,6 +122,9 @@ namespace FeatureExtraction
                             try
                             {
                                 long tick1 = Environment.TickCount;
+                                //デバッグ用にテストデータに対して特徴量を計算し、結果を保存する
+                                TrainingPointTable.Extractor.ExtractForDebug(dir + @"\featurepoints.dump", FaceData.GetTestData());
+                                //学習
                                 var errors = method.Train(dir, TrainingPointTable.Items);
                                 long tick2 = Environment.TickCount;
                                 if (errors.Count() > 0)
@@ -235,6 +238,7 @@ namespace FeatureExtraction
             lWindow.Top = this.Top + (this.Height - lWindow.Height) / 2;
             lWindow.Owner = this;
             lWindow.Show();
+
             BackgroundWorker bw = new BackgroundWorker();
             bw.DoWork += (s, ev) =>
             {
@@ -274,12 +278,19 @@ namespace FeatureExtraction
                             if (target.IsCorrect)
                                 count++;
                         }
+                        var groups = source.GroupBy((t) => t.TrueLabel);
+                        var correctness_by_label = new Dictionary<string, double>();
+                        foreach (var group in groups)
+                        {
+                            correctness_by_label[group.First().TrueLabel] = group.Where((t) => t.IsCorrect).Count() / (double)group.Count() * 100;
+                        }
+                        var by_label_str = String.Join(", ", correctness_by_label.Select((kvp) => String.Format("{0} : {1:F2}%", kvp.Key, kvp.Value)).ToArray());
 
                         dataGridView_Results.Refresh();
 
                         double correctness = count / (double)results.Count() * 100;
                         double e_ms = (tick2 - tick1) / 1000.0;
-                        string message = String.Format("Calcuration time : {0:F2}s, Correctness : {1:F2}%", e_ms, correctness);
+                        string message = String.Format("Calcuration time : {0:F2}s, Correctness : {1:F2}% ({2}) ", e_ms, correctness, by_label_str);
                         label_Message.Text = message;
                     }));
             };

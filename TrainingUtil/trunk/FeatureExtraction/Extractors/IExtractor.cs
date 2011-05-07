@@ -18,7 +18,8 @@ namespace FeatureExtraction.Extractors
         /// <param name="filename"></param>
         /// <returns></returns>
         IEnumerable<double> Extract(Faces.FaceData data);
-        
+
+        void ExtractForDebug(string filename, Faces.FaceData data);
 
         /// <summary>
         /// この特徴抽出器が抽出する特徴についての簡単な説明
