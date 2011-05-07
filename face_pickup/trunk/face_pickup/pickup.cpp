@@ -42,7 +42,7 @@ double predict(IplImage *src)
 
 	//cvResize(input, src, CV_INTER_LINEAR); //画像を縮小
 	
-	CvMat *mat = cvCreateMat(src->width, src->height, CV_32FC1); //画像と同じサイズの行列を生成
+	CvMat *mat  = cvCreateMat(src->width, src->height, CV_32FC1); //画像と同じサイズの行列を生成
 	CvMat *smat = cvCreateMat(20, 20, CV_32FC1); //縮小先の行列を生成
 	CvMat *feat = cvCreateMat(1, size*40, CV_32FC1); //特徴量を格納するベクトルを生成
 	CvMat row_header, *row;
