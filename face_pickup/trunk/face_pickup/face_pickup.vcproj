@@ -28,6 +28,7 @@
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
+				CommandLine=""
 			/>
 			<Tool
 				Name="VCXMLDataGeneratorTool"
@@ -88,6 +89,8 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
+				Description="ビルド後のイベントを実行しています！！"
+				CommandLine="copy &quot;$(ProjectDir)face_0000.jpg&quot; &quot;$(OutDir)\face_0000.jpg&quot;"
 			/>
 		</Configuration>
 		<Configuration
@@ -204,12 +207,25 @@
 			<File
 				RelativePath=".\face_0000.jpg"
 				>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+						CommandLine="copy $(OutDir)hogehoge.txt $(ProjDir)hogehoge&#x0D;&#x0A;"
+						Outputs=""
+					/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath=".\featurepoints.txt"
 				>
 			</File>
 		</Filter>
+		<File
+			RelativePath=".\Readme.txt"
+			>
+		</File>
 	</Files>
 	<Globals>
 	</Globals>
