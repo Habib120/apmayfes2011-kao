@@ -48,7 +48,7 @@ namespace FeatureExtraction.ML
             get { return "ランダムツリーによる学習を行います。"; }
         }
 
-        public IEnumerable<string> Train(string dirname, IEnumerable<FeaturePointData> data_set)
+        public IEnumerable<string> Train(string dir, IEnumerable<FeaturePointData> data_set)
         {
             List<string> errors = new List<string>();
 
@@ -107,7 +107,7 @@ namespace FeatureExtraction.ML
 
                 _rTree.Train(train_data, Emgu.CV.ML.MlEnum.DATA_LAYOUT_TYPE.ROW_SAMPLE, responses, var_idx, sample_idx, var_type, missing_mask, rt_params);
 
-                _rTree.Save("test.xml");
+                _rTree.Save(dir + @"rtrees.xml");
 
                 //変数の重要度をマッピング
 

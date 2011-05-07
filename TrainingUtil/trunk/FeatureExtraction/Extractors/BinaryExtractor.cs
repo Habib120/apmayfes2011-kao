@@ -101,6 +101,11 @@ namespace FeatureExtraction.Extractors
             }
         }
 
+        public void ExtractForDebug(string filename, FaceData face)
+        {
+            throw new NotImplementedException();
+        }
+
         /// <summary>
         /// 実行形式ファイルを指定した引数で実行する
         /// </summary>

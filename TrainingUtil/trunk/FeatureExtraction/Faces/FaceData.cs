@@ -50,5 +50,47 @@ namespace FeatureExtraction.Faces
             }
         }
         public List<Label> Labels = new List<Label>();
+
+        public static FaceData GetTestData()
+        {
+            var ret = new FaceData();
+            System.Reflection.Assembly asm = System.Reflection.Assembly.GetExecutingAssembly();
+
+            ret.ImagePath = System.IO.Path.GetDirectoryName(asm.Location) + "/Faces/test/face_0000.jpg";
+            ret.Labels = new List<Label>
+            {
+                new Label
+                {
+                    Name   = "is_smiling",
+                    Value  = "smiling",
+                    Values = new string[]
+                    {
+                        "smiling",
+                        "not_smiling",
+                    }
+                },
+                new Label
+                {
+                    Name   = "glasses",
+                    Value  = "no_glasses",
+                    Values = new string[]
+                    {
+                        "glasses",
+                        "no_glasses",
+                    }
+                },
+                new Label
+                {
+                    Name   = "gender",
+                    Value  = "male",
+                    Values = new string[]
+                    {
+                        "male",
+                        "female",
+                    }
+                }
+            };
+            return ret;
+        }
     }
 }

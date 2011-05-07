@@ -6,11 +6,11 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{0BB5D1C5-8B0C-4830-B7FF-7739D7A085C0}</ProjectGuid>
+    <ProjectGuid>{66B4B90F-00FB-460D-AD29-85A02DD1C81D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TestProject</RootNamespace>
-    <AssemblyName>TestProject</AssemblyName>
+    <RootNamespace>FeatureExtractionTest</RootNamespace>
+    <AssemblyName>FeatureExtractionTest</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -69,26 +69,14 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataVariatorTest.cs" />
     <Compile Include="FaceDataTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="VariatorSchemaTest.cs" />
-    <Compile Include="VariatorTest.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DataVariation\DataVariation.csproj">
-      <Project>{A0C7297F-A64B-4E05-9294-DEB4BDD298F0}</Project>
-      <Name>DataVariation</Name>
-    </ProjectReference>
     <ProjectReference Include="..\FeatureExtraction\FeatureExtraction.csproj">
       <Project>{E2ED9FFC-258B-4DB3-9B43-4EF82AFE8BC7}</Project>
       <Name>FeatureExtraction</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Test\images\face_0000.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
