@@ -199,6 +199,18 @@
 					RelativePath=".\CvGabor.cpp"
 					>
 				</File>
+				<File
+					RelativePath=".\Extractor.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\ExtractorSchema.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\GaborExtractor.cpp"
+					>
+				</File>
 			</Filter>
 			<Filter
 				Name="util"
