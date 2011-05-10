@@ -2,10 +2,9 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9.00"
-	Name="face_pickup"
-	ProjectGUID="{C8163B93-9B6A-4A80-B581-65903C5CDE6F}"
-	RootNamespace="face_pickup"
-	Keyword="Win32Proj"
+	Name="test_face_pickup"
+	ProjectGUID="{DD6999A8-BBD0-4AD6-8895-02A5D5C24FAD}"
+	RootNamespace="test_face_pickup"
 	TargetFrameworkVersion="196613"
 	>
 	<Platforms>
@@ -21,14 +20,14 @@
 			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
 			IntermediateDirectory="$(ConfigurationName)"
 			ConfigurationType="1"
-			CharacterSet="1"
+			CharacterSet="2"
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
+				CommandLine="copy &quot;$(SolutionDir)\face_pickup\Debug\*.obj&quot; &quot;$(InputDir)Debug&quot;"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
-				CommandLine=""
 			/>
 			<Tool
 				Name="VCXMLDataGeneratorTool"
@@ -42,12 +41,10 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="&quot;C:\Program Files\SeeingMachines\FaceTrackingAPI_NC 3.2\API\include&quot;;C:\OpenCV2.1\include\opencv"
-				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE"
+				AdditionalIncludeDirectories="../face_pickup;c:\OpenCV2.1\include\opencv;&quot;c:\build\cppunit-1.12.0\include&quot;"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
-				UsePrecompiledHeader="0"
 				WarningLevel="3"
 				DebugInformationFormat="4"
 			/>
@@ -62,11 +59,9 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="cv210d.lib cvaux210d.lib cxcore210d.lib cxts210.lib highgui210d.lib ml210d.lib opencv_ffmpeg210d.lib smftcpp.lib smft32.lib $(SM_API_LIB_NAME)"
-				LinkIncremental="2"
-				AdditionalLibraryDirectories="&quot;C:\Program Files\SeeingMachines\FaceTrackingAPI_NC 3.2\Wrappers\C++\lib&quot;;&quot;C:\Program Files\SeeingMachines\FaceTrackingAPI_NC 3.2\API\bin&quot;;C:\OpenCV2.1\build\lib\Release;C:\OpenCV2.1\build\lib\Debug"
+				AdditionalDependencies="cppunitd.lib"
+				AdditionalLibraryDirectories="&quot;C:\build\cppunit-1.12.0\lib&quot;"
 				GenerateDebugInformation="true"
-				SubSystem="1"
 				TargetMachine="1"
 			/>
 			<Tool
@@ -89,8 +84,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				Description="ビルド後のイベントを実行しています！！"
-				CommandLine="copy &quot;$(ProjectDir)face_0000.jpg&quot; &quot;$(OutDir)\face_0000.jpg&quot;"
+				CommandLine="copy &quot;$(ProjectDir)cppunit_dll.dll&quot; &quot;$(OutDir)\cppunit_dll.dll&quot;"
 			/>
 		</Configuration>
 		<Configuration
@@ -98,7 +92,7 @@
 			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
 			IntermediateDirectory="$(ConfigurationName)"
 			ConfigurationType="1"
-			CharacterSet="1"
+			CharacterSet="2"
 			WholeProgramOptimization="1"
 			>
 			<Tool
@@ -120,10 +114,8 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				PreprocessorDefinitions="WIN32;NDEBUG;_CONSOLE"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
-				UsePrecompiledHeader="0"
 				WarningLevel="3"
 				DebugInformationFormat="3"
 			/>
@@ -138,9 +130,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				LinkIncremental="1"
 				GenerateDebugInformation="true"
-				SubSystem="1"
 				OptimizeReferences="2"
 				EnableCOMDATFolding="2"
 				TargetMachine="1"
@@ -177,59 +167,19 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
-				RelativePath=".\pickup.cpp"
+				RelativePath=".\HeadPoseTest.cpp"
 				>
 			</File>
-			<Filter
-				Name="structure"
+			<File
+				RelativePath=".\TestMain.cpp"
 				>
-				<File
-					RelativePath=".\HeadData.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\HeadPose.cpp"
-					>
-				</File>
-			</Filter>
-			<Filter
-				Name="extractors"
-				>
-				<File
-					RelativePath=".\CvGabor.cpp"
-					>
-				</File>
-			</Filter>
-			<Filter
-				Name="util"
-				>
-				<File
-					RelativePath=".\ImageUtils.cpp"
-					>
-				</File>
-			</Filter>
+			</File>
 		</Filter>
 		<Filter
 			Name="ヘッダー ファイル"
 			Filter="h;hpp;hxx;hm;inl;inc;xsd"
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
-			<File
-				RelativePath=".\cvgabor.h"
-				>
-			</File>
-			<File
-				RelativePath=".\extractors.h"
-				>
-			</File>
-			<File
-				RelativePath=".\structure.h"
-				>
-			</File>
-			<File
-				RelativePath=".\util.h"
-				>
-			</File>
 		</Filter>
 		<Filter
 			Name="リソース ファイル"
@@ -238,25 +188,16 @@
 			>
 		</Filter>
 		<Filter
-			Name="test"
+			Name="cppunit"
 			>
 			<File
-				RelativePath=".\face_0000.jpg"
-				>
-				<FileConfiguration
-					Name="Debug|Win32"
-					>
-					<Tool
-						Name="VCCustomBuildTool"
-						CommandLine="copy $(OutDir)hogehoge.txt $(ProjDir)hogehoge&#x0D;&#x0A;"
-						Outputs=""
-					/>
-				</FileConfiguration>
-			</File>
-			<File
-				RelativePath=".\featurepoints.txt"
+				RelativePath=".\cppunit_dll.dll"
 				>
 			</File>
+		</Filter>
+		<Filter
+			Name="data"
+			>
 		</Filter>
 		<File
 			RelativePath=".\Readme.txt"
