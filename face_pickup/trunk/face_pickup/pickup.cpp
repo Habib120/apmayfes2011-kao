@@ -12,6 +12,8 @@
 #include <time.h>
 #include <ml.h>
 #include "cvgabor.h"
+#include "structure.h"
+#include "util.h"
 //#include <stdlib.h>
 //#include <crtdbg.h>
 
@@ -20,10 +22,17 @@ using std::endl;
 using std::cerr;
 using std::cin;
 using std::string;
+using namespace structure;
+using namespace util;
 //using namespace sm::faceapi;
 
-double x,y,z,rad;
+HeadPose pose;
 
+// グローバルな演算子オーバーロード
+std::ostream& operator<<(std::ostream& os, const HeadPose pose)
+{
+	return ( os << "HeadPose : (x, y, z, rot) = (" << pose.x << "," << pose.y<< "," << pose.z << "," << pose.rot << ")" );
+}
 
 double predict(IplImage *src)
 {
@@ -110,47 +119,22 @@ void STDCALL recieveHeadPose(void *,smEngineHeadPoseData head_pose, smCameraVide
 {
     smImageInfo video_frame_image_info;
     smImageGetInfo(video_frame.image_handle, &video_frame_image_info);     
-	x = head_pose.head_pos.x;
-	y = head_pose.head_pos.y;
-	z = head_pose.head_pos.z;
-	//cout << z << endl;
-	//char msg[256];
-	//sprintf(msg, "%5f", x);
-	//cout << msg << endl;
-	rad = head_pose.head_rot.z_rads;
-
-
-}
-
-void rotateImage( IplImage *img, double angle, cv::Point2f center)
-{
-	IplImage *tmp = cvCreateImage(cvGetSize(img), IPL_DEPTH_8U, 3);
-	CvMat M;
-	float m[6];
-
-	m[0] = (float) (cos (angle));
-	m[1] = (float) (-sin (angle));
-	m[2] = center.x;
-	m[3] = -m[1];
-	m[4] = m[0];
-	m[5] = center.y;
-	cvInitMatHeader (&M, 2, 3, CV_32FC1, m, CV_AUTOSTEP);
-	cvGetQuadrangleSubPix(img,tmp,&M);
-
-	cvCopy(tmp, img, NULL);
-	cvReleaseImage(&tmp);
+	pose.x = head_pose.head_pos.x;
+	pose.y = head_pose.head_pos.y;
+	pose.z = head_pose.head_pos.z;
+	pose.rot = head_pose.head_rot.z_rads;
 }
 
 int main ()
 {
   //_CrtDumpMemoryLeaks();
-  int center_row,center_col,start_col,end_col,start_row,end_row;
   cv::Point2f center;
   cv::Mat mat,dst;
   cv::Size sz,cam_sz;
 
-  cv::VideoCapture cap(CV_CAP_ANY);
-  if(!cap.isOpened()) 
+  cv::VideoCapture *cap = NULL;
+  cap = new cv::VideoCapture(CV_CAP_ANY);
+  if(!cap->isOpened()) 
         return -1;
 
   smAPIInit();	//faceAPI初期化	
@@ -169,7 +153,69 @@ int main ()
   smEngineStart(engine);
 
   cv::namedWindow("Capture",CV_WINDOW_AUTOSIZE);
-  cap >> mat;
+  (*cap) >> mat;
+
+
+  for(;;)
+    {
+		smAPIProcessEvents();
+        const int frame_period_ms = 30;
+        Sleep(frame_period_ms);
+		if( pose.isValueSet() )
+		{   
+			(*cap) >> mat;
+			IplImage cam_img = mat;
+			IplImage* face_img = ImageUtils::clipHeadImage(&cam_img, pose);
+			cvShowImage("Capture", face_img);
+		}
+
+		if(cv::waitKey(30) >= 0){
+			break;
+		}
+  }
+  smEngineDestroy(&engine);
+  smVideoDisplayDestroy(&video_display_handle);
+
+  smAPIQuit();
+
+  cvDestroyWindow("Capture");
+  
+  return 0;
+}
+
+
+/*
+Old version of main
+int main ()
+{
+  //_CrtDumpMemoryLeaks();
+  int center_row,center_col,start_col,end_col,start_row,end_row;
+  cv::Point2f center;
+  cv::Mat mat,dst;
+  cv::Size sz,cam_sz;
+
+  cv::VideoCapture *cap = NULL;
+  cap = new cv::VideoCapture(CV_CAP_ANY);
+  if(!cap->isOpened()) 
+        return -1;
+
+  smAPIInit();	//faceAPI初期化	
+  smCameraRegisterType(SM_API_CAMERA_TYPE_WDM);	//カメラタイプの登録（必須）
+	
+  //faceAPIエンジン作成	
+  smEngineHandle engine = 0;	
+  smEngineCreate(SM_API_ENGINE_TYPE_HEAD_TRACKER_V2,&engine);	
+  smHTRegisterHeadPoseCallback(engine,0,recieveHeadPose);
+  //faceAPI表示ディスプレイ作成
+  smVideoDisplayHandle video_display_handle = 0;
+  smVideoDisplayCreate(engine, &video_display_handle,0,TRUE);
+  smVideoDisplaySetFlags(video_display_handle,SM_API_VIDEO_DISPLAY_HEAD_MESH);
+
+  //faceAPIトラッキング開始
+  smEngineStart(engine);
+
+  cv::namedWindow("Capture",CV_WINDOW_AUTOSIZE);
+  (*cap) >> mat;
 
 
   for(;;)
@@ -177,15 +223,16 @@ int main ()
 		smAPIProcessEvents();
         const int frame_period_ms = 30;
         Sleep(frame_period_ms); 
-		if( z != 0 )
+		if( pose.isValueSet() )
 		{   
+			
 			cam_sz = mat.size();
-			center_row = cam_sz.height/2 + (25 - y*(cam_sz.height/0.4)*cos(rad))*0.4/z;
-			center_col = cam_sz.width/2 + (((x*cam_sz.width+4)/0.4)*cos(rad) + y*(cam_sz.height/0.3)*sin(rad))*0.4/z;
+			center_row = cam_sz.height/2 + (25 - pose.y*(cam_sz.height/0.4)*cos(pose.rot))*0.4/pose.z;
+			center_col = cam_sz.width/2 + (((pose.x*cam_sz.width+4)/0.4)*cos(pose.rot) + pose.y*(cam_sz.height/0.3)*sin(pose.rot))*0.4/pose.z;
 			center.x=center_col;
 			center.y=center_row;
 			//cout << cam_sz.height << endl;
-			sz.width = 2*floor(cam_sz.height/(z*10));
+			sz.width = 2*floor(cam_sz.height/(pose.z*10));
 			//cout << sz.width << endl;
 			sz.height = sz.width;
 			start_col = center_col - sz.width/2;
@@ -194,11 +241,11 @@ int main ()
 			end_row = center_row + sz.height/2;
 			//rot = cv::getRotationMatrix2D(center,rad,1);
 			//mat.create(sz.height,sz.width,CV_16SC3);
-			cap >> mat;
+			(*cap) >> mat;
 			//cout << "(" << center.x << "," << center.y << ")" << endl;
 			cv::flip(mat,mat,CV_16SC3);
 			IplImage img = mat;
-			rotateImage(&img,-rad,center);
+			rotateImage(&img,-pose.rot,center);
 			cv::Mat dst(&img);
 			cv::Mat dst2 = dst;
 	
@@ -234,3 +281,4 @@ int main ()
   
   return 0;
 }
+*/
