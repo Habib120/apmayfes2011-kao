@@ -3,12 +3,9 @@
 
 #pragma once
 
-namespace util
+class ImageUtils
 {
-	class ImageUtils
-	{
-	public:
-		static IplImage* clipHeadImage(IplImage* src, structure::HeadPose pose);
-		static void rotateImage( IplImage *target, double angle, cv::Point2f center);
-	};
+public:
+	static IplImage* clipHeadImage(IplImage* src, HeadPose pose);
+	static void rotateImage( IplImage *target, double angle, cv::Point2f center);
 };

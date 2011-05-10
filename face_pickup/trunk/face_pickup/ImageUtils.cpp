@@ -1,9 +1,6 @@
 #include "util.h"
 #include "structure.h"
 
-using namespace structure;
-using namespace util;
-
 /**
  * ‰æ‘œ‚ğ‰ñ“]‚³‚¹‚éƒƒWƒbƒN
  */
