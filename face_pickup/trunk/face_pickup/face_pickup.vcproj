@@ -20,7 +20,7 @@
 			Name="Debug|Win32"
 			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
 			IntermediateDirectory="$(ConfigurationName)"
-			ConfigurationType="1"
+			ConfigurationType="4"
 			CharacterSet="1"
 			>
 			<Tool
@@ -61,19 +61,10 @@
 				Name="VCPreLinkEventTool"
 			/>
 			<Tool
-				Name="VCLinkerTool"
-				AdditionalDependencies="cv210d.lib cvaux210d.lib cxcore210d.lib cxts210.lib highgui210d.lib ml210d.lib opencv_ffmpeg210d.lib smftcpp.lib smft32.lib $(SM_API_LIB_NAME)"
-				LinkIncremental="2"
-				AdditionalLibraryDirectories="&quot;C:\Program Files\SeeingMachines\FaceTrackingAPI_NC 3.2\Wrappers\C++\lib&quot;;&quot;C:\Program Files\SeeingMachines\FaceTrackingAPI_NC 3.2\API\bin&quot;;C:\OpenCV2.1\build\lib\Release;C:\OpenCV2.1\build\lib\Debug"
-				GenerateDebugInformation="true"
-				SubSystem="1"
-				TargetMachine="1"
+				Name="VCLibrarianTool"
 			/>
 			<Tool
 				Name="VCALinkTool"
-			/>
-			<Tool
-				Name="VCManifestTool"
 			/>
 			<Tool
 				Name="VCXDCMakeTool"
@@ -83,9 +74,6 @@
 			/>
 			<Tool
 				Name="VCFxCopTool"
-			/>
-			<Tool
-				Name="VCAppVerifierTool"
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"

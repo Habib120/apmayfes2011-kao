@@ -24,7 +24,7 @@
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
-				CommandLine="copy &quot;$(SolutionDir)\face_pickup\Debug\*.obj&quot; &quot;$(InputDir)Debug&quot;"
+				CommandLine=""
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
@@ -59,8 +59,8 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="cppunitd.lib"
-				AdditionalLibraryDirectories="&quot;C:\build\cppunit-1.12.0\lib&quot;"
+				AdditionalDependencies="cppunitd.lib cv210d.lib cvaux210d.lib cxcore210d.lib cxts210.lib highgui210d.lib ml210d.lib opencv_ffmpeg210d.lib"
+				AdditionalLibraryDirectories="c:\OpenCV2.1\build\lib\Release;c:\OpenCV2.1\build\lib\Debug;&quot;C:\build\cppunit-1.12.0\lib&quot;"
 				GenerateDebugInformation="true"
 				TargetMachine="1"
 			/>
@@ -84,7 +84,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="copy &quot;$(ProjectDir)cppunit_dll.dll&quot; &quot;$(OutDir)\cppunit_dll.dll&quot;"
+				CommandLine="copy &quot;$(ProjectDir)cppunit_dll.dll&quot; &quot;$(OutDir)\cppunit_dll.dll&quot;&#x0D;&#x0A;copy &quot;$(ProjectDir)face_0000.jpg&quot; &quot;$(OutDir)face_0000.jpg&quot;&#x0D;&#x0A;copy &quot;$(ProjectDir)featurepoints.txt &quot;$(OutDir)featurepoints.txt&quot;"
 			/>
 		</Configuration>
 		<Configuration
@@ -167,6 +167,10 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
+				RelativePath=".\CvGaborTest.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\HeadPoseTest.cpp"
 				>
 			</File>
@@ -198,6 +202,14 @@
 		<Filter
 			Name="data"
 			>
+			<File
+				RelativePath="..\face_pickup\face_0000.jpg"
+				>
+			</File>
+			<File
+				RelativePath="..\face_pickup\featurepoints.txt"
+				>
+			</File>
 		</Filter>
 		<File
 			RelativePath=".\Readme.txt"

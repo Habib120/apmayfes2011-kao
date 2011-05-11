@@ -1,5 +1,6 @@
 #include<iostream>
 #include "structure.h"
+#include "cvgabor.h"
 
 #pragma once
 class Extractor
@@ -32,4 +33,7 @@ protected:
 	void doExtract(HeadData data, CvMat* result);
 	void postExtract(HeadData data, CvMat* result);
 	int GetFeatureCount();
+	static void initFilters();
+	typedef std::vector<CvGabor> FilterContainer;
+	static FilterContainer filters;
 };
