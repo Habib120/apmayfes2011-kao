@@ -1,6 +1,6 @@
 #include <cppunit/extensions/HelperMacros.h> // 
 #include "structure.h"
-using namespace structure;
+#include "cv.h"
 
 // ˆÈ‰º‚ÍHeadPoseTestƒNƒ‰ƒX‚ÌéŒ¾-----
 class HeadPoseTest : public CPPUNIT_NS::TestFixture { // 
