@@ -84,7 +84,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="copy &quot;$(ProjectDir)cppunit_dll.dll&quot; &quot;$(OutDir)\cppunit_dll.dll&quot;&#x0D;&#x0A;copy &quot;$(ProjectDir)face_0000.jpg&quot; &quot;$(OutDir)face_0000.jpg&quot;&#x0D;&#x0A;copy &quot;$(ProjectDir)featurepoints.txt &quot;$(OutDir)featurepoints.txt&quot;"
+				CommandLine="copy &quot;$(ProjectDir)cppunit_dll.dll&quot; &quot;$(OutDir)\cppunit_dll.dll&quot;&#x0D;&#x0A;copy &quot;$(ProjectDir)face_0000.jpg&quot; &quot;$(OutDir)\face_0000.jpg&quot;&#x0D;&#x0A;copy &quot;$(ProjectDir)featurepoints.txt&quot; &quot;$(OutDir)\featurepoints.txt&quot;&#x0D;&#x0A;"
 			/>
 		</Configuration>
 		<Configuration
@@ -167,17 +167,21 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
-				RelativePath=".\CvGaborTest.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\HeadPoseTest.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\TestMain.cpp"
 				>
 			</File>
+			<Filter
+				Name="tests"
+				>
+				<File
+					RelativePath=".\CvGaborTest.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\HeadPoseTest.cpp"
+					>
+				</File>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="ヘッダー ファイル"
@@ -203,11 +207,11 @@
 			Name="data"
 			>
 			<File
-				RelativePath="..\face_pickup\face_0000.jpg"
+				RelativePath=".\face_0000.jpg"
 				>
 			</File>
 			<File
-				RelativePath="..\face_pickup\featurepoints.txt"
+				RelativePath=".\featurepoints.txt"
 				>
 			</File>
 		</Filter>
