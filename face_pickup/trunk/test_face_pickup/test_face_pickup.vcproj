@@ -84,7 +84,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="copy &quot;$(ProjectDir)cppunit_dll.dll&quot; &quot;$(OutDir)\cppunit_dll.dll&quot;&#x0D;&#x0A;copy &quot;$(ProjectDir)face_0000.jpg&quot; &quot;$(OutDir)\face_0000.jpg&quot;&#x0D;&#x0A;copy &quot;$(ProjectDir)featurepoints.txt&quot; &quot;$(OutDir)\featurepoints.txt&quot;&#x0D;&#x0A;"
+				CommandLine="copy &quot;$(ProjectDir)cppunit_dll.dll&quot; &quot;$(OutDir)\cppunit_dll.dll&quot;&#x0D;&#x0A;copy &quot;$(ProjectDir)face_0000.jpg&quot; &quot;$(OutDir)\face_0000.jpg&quot;&#x0D;&#x0A;copy &quot;$(ProjectDir)featurepoints_gabor.txt&quot; &quot;$(OutDir)\featurepoints_gabor.txt&quot;&#x0D;&#x0A;"
 			/>
 		</Configuration>
 		<Configuration
@@ -186,12 +186,24 @@
 					>
 				</File>
 			</Filter>
+			<Filter
+				Name="utils"
+				>
+				<File
+					RelativePath=".\TestUtils.cpp"
+					>
+				</File>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="ヘッダー ファイル"
 			Filter="h;hpp;hxx;hm;inl;inc;xsd"
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
+			<File
+				RelativePath=".\tokenizer.h"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="リソース ファイル"
@@ -215,7 +227,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\featurepoints.txt"
+				RelativePath=".\featurepoints_gabor.txt"
 				>
 			</File>
 		</Filter>
