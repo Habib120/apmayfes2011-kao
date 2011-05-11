@@ -184,10 +184,6 @@
 				Name="extractors"
 				>
 				<File
-					RelativePath=".\CvGabor.cpp"
-					>
-				</File>
-				<File
 					RelativePath=".\Extractor.cpp"
 					>
 				</File>
@@ -203,6 +199,10 @@
 			<Filter
 				Name="util"
 				>
+				<File
+					RelativePath=".\CvGabor.cpp"
+					>
+				</File>
 				<File
 					RelativePath=".\ImageUtils.cpp"
 					>

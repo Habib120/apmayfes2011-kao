@@ -17,7 +17,7 @@ void GaborExtractor::doExtract(HeadData data, CvMat *result)
 	cvCvtColor(raw_src, raw_src_gray, CV_BGR2GRAY);
 	
 	IplImage* src = cvCreateImage(cvSize(in_width, in_width), IPL_DEPTH_8U, 1);
-	cvResize(raw_src_gray, src);
+	cvResize(raw_src_gray, src, CV_INTER_LINEAR);
 	CvMat *mat  = cvCreateMat(src->width, src->height, CV_32FC1); //画像と同じサイズの行列を生成
 	CvMat *smat = cvCreateMat(out_width, out_width, CV_32FC1); //縮小先の行列を生成
 	CvMat row_header, *row;
