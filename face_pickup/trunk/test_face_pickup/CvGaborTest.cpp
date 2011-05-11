@@ -23,7 +23,7 @@ protected:
 
 // 以下はCounterTestクラスの実装-----
 
-CPPUNIT_TEST_SUITE_REGISTRATION( CvGaborTest ); // 
+//CPPUNIT_TEST_SUITE_REGISTRATION( CvGaborTest ); // 
 
 // 各テスト・ケースの実行直前に呼ばれる
 void CvGaborTest::setUp() {
@@ -63,6 +63,7 @@ void CvGaborTest::test_Kernel()
 void CvGaborTest::test_Convert()
 {
 	CvGabor* c;
+
 	/*
 	 * Defining mat
 	 */
@@ -89,9 +90,11 @@ void CvGaborTest::test_Convert()
 			cv::Mat dispmat = mat;
 			cv::imshow("conv", c->convertToByte(mat, 3));
 			cv::waitKey(0);
+			delete c;
 		}
 	}
 
+	cvReleaseMat(&mat);
 	cvDestroyAllWindows();
 	std::cout << "結果は正しいですか？" << std::endl;
 	char ans;
