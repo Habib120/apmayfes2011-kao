@@ -178,6 +178,10 @@
 					>
 				</File>
 				<File
+					RelativePath=".\GaborExtractorTest.cpp"
+					>
+				</File>
+				<File
 					RelativePath=".\HeadPoseTest.cpp"
 					>
 				</File>

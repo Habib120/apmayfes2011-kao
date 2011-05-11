@@ -25,8 +25,12 @@ void Extractor::preExtract(HeadData data, CvMat *result)
 	if (size.height != 1 || size.width != this->GetFeatureCount())
 	{
 		char *msg;
-		sprintf(msg, "result should be 1x%d matrix, %dx%d given.", this->GetFeatureCount(), size.height, size.width);
+		sprintf(msg, "Invalid Argument : result should be 1x%d matrix, %dx%d given.", this->GetFeatureCount(), size.height, size.width);
 		throw msg;
+	}
+	if (data.GetImage()->depth != IPL_DEPTH_8U || data.GetImage()->nChannels != 3)
+	{
+		throw "Invalid Argument : HeadData image must contains 3channel BGR byte image";
 	}
 }
 

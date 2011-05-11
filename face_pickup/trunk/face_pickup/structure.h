@@ -17,4 +17,6 @@ public:
 	IplImage* GetImage();
 	void SetImage(IplImage* image);
 	HeadPose pose;
+protected:
+	IplImage* image;
 };
