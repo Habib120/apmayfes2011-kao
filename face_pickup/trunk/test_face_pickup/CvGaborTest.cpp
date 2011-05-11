@@ -6,7 +6,7 @@
 // 以下はCvGaborTestクラスの宣言-----
 class CvGaborTest : public CPPUNIT_NS::TestFixture { // 
   CPPUNIT_TEST_SUITE( CvGaborTest ); // 
-  CPPUNIT_TEST( test_Kernel );
+  //CPPUNIT_TEST( test_Kernel );
   CPPUNIT_TEST( test_Convert );
   CPPUNIT_TEST_SUITE_END();          // 
 
@@ -62,13 +62,39 @@ void CvGaborTest::test_Kernel()
  */
 void CvGaborTest::test_Convert()
 {
-	CvGabor *c = new CvGabor(2, 3);
-	cv::Mat src = cv::imread("face_0000.jpg");
+	CvGabor* c;
+	/*
+	 * Defining mat
+	 */
+	cv::Mat src = cv::imread("face_0000.jpg"); //画像
+	cv::Mat src_g(src.size(), CV_8UC1); //グレースケール変換したテスト画像
+	IplImage ipl_src_g = src_g; //グレースケール画像のIplImage参照
+	CvMat *mat = cvCreateMat(src.rows, src.cols, CV_32FC1);	//戻り値を受け取る配列
+
+	/*
+	 * Converting data to mat
+	 */
+	cv::cvtColor(src, src_g, CV_BGR2GRAY);
+
 	cv::imshow("base_img", src);
-	cv::Mat mat(src.size(), CV_32FC1);
-	c->get_mat(src, mat);
-	cv::imshow("conv_img", c->convertToByte(mat));
 	cv::waitKey(0);
 
-	CPPUNIT_ASSERT(true);
+	int u, v;
+	for (u = 0; u < 5; u++)
+	{
+		for (v = 0; v < 8; v++)
+		{
+			c = new CvGabor(u, v);
+			c->get_value(&ipl_src_g, mat);
+			cv::Mat dispmat = mat;
+			cv::imshow("conv", c->convertToByte(mat, 3));
+			cv::waitKey(0);
+		}
+	}
+
+	cvDestroyAllWindows();
+	std::cout << "結果は正しいですか？" << std::endl;
+	char ans;
+	std::cin >> ans;
+	CPPUNIT_ASSERT(ans == 'y');
 }
