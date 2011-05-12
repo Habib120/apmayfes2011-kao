@@ -27,9 +27,9 @@ void ExtractorSchema::doExtract(HeadData data, CvMat *result)
 	current = 0;
 	for (i = 0; i < extractors.size(); i++)
 	{
-		CvMat* target = 0;
-		cvGetCols(result, target, current, current + extractors.at(i)->GetFeatureCount());
-		extractors.at(i)->Extract(data, target);
-		current++;
+		CvMat target;
+		cvGetCols(result, &target, current, current + extractors.at(i)->GetFeatureCount());
+		extractors.at(i)->Extract(data, &target);
+		current += extractors.at(i)->GetFeatureCount();
 	}
 }

@@ -17,14 +17,12 @@ protected:
 class ExtractorSchema : public Extractor
 {
 public:
-	ExtractorSchema();
 	virtual void Add(Extractor *extractor);
 	int GetFeatureCount();
 protected:
 	typedef std::vector<Extractor*> ExtractorContainer;
 	ExtractorContainer extractors;
 	void doExtract(HeadData data, CvMat* result);
-	void postExtract(HeadData data, CvMat* result);
 };
 
 typedef std::vector<CvGabor *> FilterContainer;
@@ -40,4 +38,12 @@ protected:
 	static FilterContainer filters;
 	static const int in_width = 128;
 	static const int out_width = 20;
+};
+
+class DummyExtractor : public Extractor
+{
+public:
+	int GetFeatureCount();
+protected:
+	void doExtract(HeadData data, CvMat* result);
 };
