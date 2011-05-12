@@ -41,3 +41,8 @@ void Extractor::preExtract(HeadData data, CvMat *result)
 void Extractor::postExtract(HeadData data, CvMat *result)
 {
 }
+
+CvMat * Extractor::CreateFeatureMat()
+{
+	return cvCreateMat(1, this->GetFeatureCount(), CV_32FC1);
+}

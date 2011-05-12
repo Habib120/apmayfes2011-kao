@@ -8,6 +8,7 @@ class Extractor
 public:
 	virtual void Extract(HeadData data, CvMat* result);
 	virtual int GetFeatureCount() = 0;
+	virtual CvMat* CreateFeatureMat();
 protected:
 	virtual void doExtract(HeadData data, CvMat* result) = 0;
 	virtual void preExtract(HeadData data, CvMat* result);

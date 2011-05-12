@@ -20,7 +20,7 @@
 			Name="Debug|Win32"
 			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
 			IntermediateDirectory="$(ConfigurationName)"
-			ConfigurationType="4"
+			ConfigurationType="1"
 			CharacterSet="1"
 			>
 			<Tool
@@ -42,7 +42,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="&quot;C:\Program Files\SeeingMachines\FaceTrackingAPI_NC 3.2\API\include&quot;;C:\OpenCV2.1\include\opencv"
+				AdditionalIncludeDirectories="&quot;C:\Program Files\SeeingMachines\FaceTrackingAPI_NC 3.2\API\include&quot;;&quot;C:\Program Files\boost\boost_1_46_1\&quot;;C:\OpenCV2.1\include\opencv"
 				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -61,10 +61,16 @@
 				Name="VCPreLinkEventTool"
 			/>
 			<Tool
-				Name="VCLibrarianTool"
+				Name="VCLinkerTool"
+				AdditionalDependencies="cv210d.lib cvaux210d.lib cxcore210d.lib cxts210.lib highgui210d.lib ml210d.lib opencv_ffmpeg210d.lib smft32.lib smftcpp.lib"
+				AdditionalLibraryDirectories="&quot;C:\Program Files\boost\boost_1_46_1\lib&quot;;C:\OpenCV2.1\build\lib\Debug;C:\OpenCV2.1\build\lib\Release;&quot;C:\Program Files\SeeingMachines\FaceTrackingAPI_NC 3.2\Wrappers\C++\lib&quot;;&quot;C:\Program Files\SeeingMachines\FaceTrackingAPI_NC 3.2\API\bin&quot;"
+				GenerateDebugInformation="true"
 			/>
 			<Tool
 				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCManifestTool"
 			/>
 			<Tool
 				Name="VCXDCMakeTool"
@@ -76,9 +82,12 @@
 				Name="VCFxCopTool"
 			/>
 			<Tool
+				Name="VCAppVerifierTool"
+			/>
+			<Tool
 				Name="VCPostBuildEventTool"
 				Description="ビルド後のイベントを実行しています！！"
-				CommandLine="copy &quot;$(ProjectDir)face_0000.jpg&quot; &quot;$(OutDir)\face_0000.jpg&quot;"
+				CommandLine="copy &quot;$(ProjectDir)face_0000.jpg&quot; &quot;$(OutDir)\face_0000.jpg&quot;&#x0D;&#x0A;copy &quot;$(ProjectDir)rtrees.xml&quot; &quot;$(OutDir)\rtrees.xml&quot;&#x0D;&#x0A;"
 			/>
 		</Configuration>
 		<Configuration
@@ -212,6 +221,26 @@
 					>
 				</File>
 			</Filter>
+			<Filter
+				Name="detectors"
+				>
+				<File
+					RelativePath=".\Detector.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\SmileDetector.cpp"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="network"
+				>
+				<File
+					RelativePath=".\Socket.cpp"
+					>
+				</File>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="ヘッダー ファイル"
@@ -223,7 +252,15 @@
 				>
 			</File>
 			<File
+				RelativePath=".\detectors.h"
+				>
+			</File>
+			<File
 				RelativePath=".\extractors.h"
+				>
+			</File>
+			<File
+				RelativePath=".\network.h"
 				>
 			</File>
 			<File
@@ -259,6 +296,14 @@
 			</File>
 			<File
 				RelativePath=".\featurepoints.txt"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="ml"
+			>
+			<File
+				RelativePath=".\rtrees.xml"
 				>
 			</File>
 		</Filter>
