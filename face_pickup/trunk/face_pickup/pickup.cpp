@@ -5,7 +5,6 @@
 #include <highgui.h>
 #include <ctype.h>
 #include <iostream>
-//#include <sm_api_cxx.h>
 #include <conio.h>
 #include "sm_api.h"
 #include <cmath>
@@ -13,7 +12,12 @@
 #include <ml.h>
 #include "cvgabor.h"
 #include "structure.h"
+#include "extractors.h"
+#include "detectors.h"
 #include "util.h"
+
+#include <boost/thread.hpp>
+
 //#include <stdlib.h>
 //#include <crtdbg.h>
 
@@ -25,29 +29,26 @@ using std::string;
 //using namespace sm::faceapi;
 
 HeadPose pose;
+CvERTrees ert;
+typedef boost::mutex::scoped_lock lock;
+volatile bool                     end_flag;
+boost::mutex                      ef_guard;
 
 // グローバルな演算子オーバーロード
 std::ostream& operator<<(std::ostream& os, const HeadPose pose)
 {
 	return ( os << "HeadPose : (x, y, z, rot) = (" << pose.x << "," << pose.y<< "," << pose.z << "," << pose.rot << ")" );
 }
-//
-//double predict(IplImage *src)
-//{
-//
-///**
-//	/*****RandomTrees*****/
-//	CvMat *test = cvCreateMat(1, size*40, CV_32FC1);
-//	double r;
-//	CvERTrees ert;
-//	ert.load("./test2.xml");
-//	//cout << ert.get_tree_count() << endl;
-//	r = ert.predict(test);
-//	cout << "認識結果：" << r << endl;
-//
-//	cvReleaseMat(&feat);
-//	return r;
-//}
+
+float predict(CvMat *result)
+{
+	if (ert.get_tree_count() == 0)
+	{
+		ert.load("rtrees.xml");
+	}
+	float r = ert.predict(result);
+	return r;
+}
 
 
 
@@ -55,6 +56,7 @@ std::ostream& operator<<(std::ostream& os, const HeadPose pose)
 
 void STDCALL recieveHeadPose(void *,smEngineHeadPoseData head_pose, smCameraVideoFrame video_frame)
 {
+	lock lk(ef_guard);
     smImageInfo video_frame_image_info;
     smImageGetInfo(video_frame.image_handle, &video_frame_image_info);     
 	pose.x = head_pose.head_pos.x;
@@ -66,10 +68,7 @@ void STDCALL recieveHeadPose(void *,smEngineHeadPoseData head_pose, smCameraVide
 int main ()
 {
   //_CrtDumpMemoryLeaks();
-  cv::Point2f center;
   cv::Mat mat,dst;
-  cv::Size sz,cam_sz;
-
   cv::VideoCapture *cap = NULL;
   cap = new cv::VideoCapture(CV_CAP_ANY);
   if(!cap->isOpened()) 
@@ -93,18 +92,32 @@ int main ()
   cv::namedWindow("Capture",CV_WINDOW_AUTOSIZE);
   (*cap) >> mat;
 
-
   for(;;)
     {
 		smAPIProcessEvents();
         const int frame_period_ms = 30;
         Sleep(frame_period_ms);
+		lock lk(ef_guard);
 		if( pose.isValueSet() )
 		{   
+			//Get current camera capture frame
 			(*cap) >> mat;
 			IplImage cam_img = mat;
 			IplImage* face_img = ImageUtils::clipHeadImage(&cam_img, pose);
+			
+			//Getting current head data
+			HeadData *data = new HeadData();
+			data->SetImage(face_img);
+
+			SmileDetector detector;
+			std::cout << detector.Detect(*data) << std::endl;
+
+			//Predict facial emotions
+
 			cvShowImage("Capture", face_img);
+			cvReleaseImage(&face_img);
+			delete data;
+			//cvReleaseImage(&face_img);
 		}
 
 		if(cv::waitKey(30) >= 0){

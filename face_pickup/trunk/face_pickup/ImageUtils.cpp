@@ -65,10 +65,10 @@ IplImage* ImageUtils::clipHeadImage(IplImage* src, HeadPose pose)
 		//cv::imshow("Capture", dst);
 
 		double r=0;
-		cv::cvtColor(dst,dst2,CV_RGB2GRAY,0);
+		dst.copyTo(dst2);
 		IplImage dimg = dst2;
 		IplImage *result;
-		result = cvCreateImage(cvSize(128,128), IPL_DEPTH_8U, 1);
+		result = cvCreateImage(cvSize(128,128), IPL_DEPTH_8U, 3);
 		cvResize(&dimg, result, CV_INTER_LINEAR);
 		return result;
 		//cout << "result" << r << endl;

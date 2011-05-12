@@ -18,7 +18,7 @@ protected:
   CvMat *answer;
   void test_Extract();
   static CvMat* loadGaborFeaturePoints(); 
-  static const int LOAD_LENGTH = 16000;
+  static const int LOAD_LENGTH = 10;
 };
 
 
@@ -48,8 +48,6 @@ CPPUNIT_TEST_SUITE_REGISTRATION( GaborExtractorTest ); //
 
 // 各テスト・ケースの実行直前に呼ばれる
 void GaborExtractorTest::setUp() {
-	std::cout << std::endl;
-	std::cout << "Loading test data...";
 	data = new HeadData();
 	IplImage *img = cvLoadImage("face_0000.jpg");
 	data->SetImage(img);
@@ -57,7 +55,6 @@ void GaborExtractorTest::setUp() {
 
 	//正解を用意
 	answer = loadGaborFeaturePoints();
-	std::cout << "done" << std::endl;
 }
 
 
