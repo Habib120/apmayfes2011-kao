@@ -31,84 +31,24 @@ std::ostream& operator<<(std::ostream& os, const HeadPose pose)
 {
 	return ( os << "HeadPose : (x, y, z, rot) = (" << pose.x << "," << pose.y<< "," << pose.z << "," << pose.rot << ")" );
 }
+//
+//double predict(IplImage *src)
+//{
+//
+///**
+//	/*****RandomTrees*****/
+//	CvMat *test = cvCreateMat(1, size*40, CV_32FC1);
+//	double r;
+//	CvERTrees ert;
+//	ert.load("./test2.xml");
+//	//cout << ert.get_tree_count() << endl;
+//	r = ert.predict(test);
+//	cout << "認識結果：" << r << endl;
+//
+//	cvReleaseMat(&feat);
+//	return r;
+//}
 
-double predict(IplImage *src)
-{
-	//cvNamedWindow("test1",1);
-	//cvShowImage("test1",&dimg);
-    //clock_t start, end;
-    //cout << "初期化: ";
-    //start = clock();
-    //IplImage *src=0;
-	//IplImage *input=0;
-	//input = &dimg;
-    //input = cvLoadImage( "./face_0043.jpg" , CV_LOAD_IMAGE_GRAYSCALE);
-    //src = cvCreateImage(cvSize(128,128), IPL_DEPTH_8U, 1);
-	//dst = cv/CreateImage(cvSize(128,128), IPL_DEPTH_8U, 1);
-    int size = 400;
-
-	//cvResize(input, src, CV_INTER_LINEAR); //画像を縮小
-	
-	CvMat *mat  = cvCreateMat(src->width, src->height, CV_32FC1); //画像と同じサイズの行列を生成
-	CvMat *smat = cvCreateMat(20, 20, CV_32FC1); //縮小先の行列を生成
-	CvMat *feat = cvCreateMat(1, size*40, CV_32FC1); //特徴量を格納するベクトルを生成
-	CvMat row_header, *row;
-	CvMat tmp;
-	
-	//cvNamedWindow("test2");
-	//cvShowImage("test1",input);
-
-	int k = 0;
-	for (int u = 0; u < 5; u++)
-	{
-		for (int v = 0; v < 8; v++)
-		{
-			//cvShowImage("test1",&src);
-			CvGabor gabor(u, v);
-			//gabor.conv_img(src, dst);
-			//cvNamedWindow("dst");
-			//cvShowImage("dst", dst);
-			//cvWaitKey();
-			//cvDestroyWindow("dst");
-			gabor.get_value(src, mat); //Gabor特徴量をmatに格納
-			//cvShowImage("test2", mat);
-			//for (int n = 0; n < 10; n++)
-			//{
-			//	cout << CV_MAT_ELEM(*mat, float, 0, n) << endl;
-			//}
-			cvResize(mat, smat, CV_INTER_LINEAR); //行列を縮小
-			row = cvReshape(smat, &row_header, 0, 1); //行列を行ベクトルに変形
-			//cout << CV_MAT_ELEM(*row, float, 0, size-1) << endl;
-			cvGetCols(feat, &tmp, size*k, size*(k+1));
-			cvCopy(row, &tmp); //featの一部に特徴量を並べた行ベクトルをコピー
-			k = k+1;
-		}
-	}
-	//cout << CV_MAT_ELEM(*feat, float, 0, size-1) << endl;
-
-	//cvNamedWindow("src");
-	//cvShowImage("src", src);
-	//cvWaitKey();
-	//cvDestroyWindow("src");
-	//cvReleaseImage(&input);
-	cvReleaseImage(&src);
-	//cvReleaseImage(&dst);
-	cvReleaseMat(&mat);
-	cvReleaseMat(&smat);
-
-			/*****RandomTrees*****/
-			CvMat *test = cvCreateMat(1, size*40, CV_32FC1);
-			double r;
-			CvERTrees ert;
-			ert.load("./test2.xml");
-			//cout << ert.get_tree_count() << endl;
-			r = ert.predict(test);
-			cout << "認識結果：" << r << endl;
-
-	cvReleaseMat(&feat);
-
-	return r;
-}
 
 
 

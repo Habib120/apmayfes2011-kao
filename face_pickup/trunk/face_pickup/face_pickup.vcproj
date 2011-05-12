@@ -184,6 +184,10 @@
 				Name="extractors"
 				>
 				<File
+					RelativePath=".\DummyExtractor.cpp"
+					>
+				</File>
+				<File
 					RelativePath=".\Extractor.cpp"
 					>
 				</File>
