@@ -11,3 +11,8 @@ IplImage* HeadData::GetImage()
 {
 	return this->image;
 }
+
+void HeadData::ReleaseImage()
+{
+	cvReleaseImage(&(this->image));
+}
