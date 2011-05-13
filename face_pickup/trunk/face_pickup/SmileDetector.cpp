@@ -1,7 +1,7 @@
 #include "detectors.h"
 #include "cv.h"
 
-void SmileDetector::preDetect(HeadData data)
+std::string SmileDetector::Detect(HeadData data)
 {
 	//ランダムツリーの決定木をxmlファイルから初期化する
 	if (ert.get_tree_count() == 0)
@@ -14,10 +14,7 @@ void SmileDetector::preDetect(HeadData data)
 		es = new ExtractorSchema();
 		es->Add(new GaborExtractor()); //取りあえずガボール特徴量
 	}
-}
 
-std::string SmileDetector::doDetect(HeadData data)
-{
 	CvMat* feature = es->CreateFeatureMat();
 	es->Extract(data, feature);
 	double r = ert.predict(feature);

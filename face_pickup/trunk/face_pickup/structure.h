@@ -14,8 +14,10 @@ public:
 class HeadData
 {
 public:
+	HeadData() : image(0) {}
 	IplImage* GetImage();
 	void SetImage(IplImage* image);
+	void ReleaseImage();
 	HeadPose pose;
 protected:
 	IplImage* image;

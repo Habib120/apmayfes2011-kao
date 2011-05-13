@@ -225,10 +225,6 @@
 				Name="detectors"
 				>
 				<File
-					RelativePath=".\Detector.cpp"
-					>
-				</File>
-				<File
 					RelativePath=".\SmileDetector.cpp"
 					>
 				</File>
@@ -241,6 +237,18 @@
 					>
 				</File>
 			</Filter>
+			<Filter
+				Name="faceapi"
+				>
+				<File
+					RelativePath=".\HeadTracker.cpp"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="detection_thread"
+				>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="ヘッダー ファイル"
@@ -252,11 +260,19 @@
 				>
 			</File>
 			<File
+				RelativePath=".\detection_thread.h"
+				>
+			</File>
+			<File
 				RelativePath=".\detectors.h"
 				>
 			</File>
 			<File
 				RelativePath=".\extractors.h"
+				>
+			</File>
+			<File
+				RelativePath=".\faceapi.h"
 				>
 			</File>
 			<File
