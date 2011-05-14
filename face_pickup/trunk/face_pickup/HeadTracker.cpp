@@ -1,5 +1,5 @@
 #include "sm_api.h"
-#include "faceapi.h"
+#include "tracker.h"
 #include "cv.h"
 #include "util.h"
 #include "structure.h"
@@ -130,6 +130,8 @@ HeadData* HeadTracker::GetCurrentHeadData()
 		cvCopy(src_img, ret_img);
 		ret->SetImage(ret_img);
 		ret->pose = pose;
+
+		return ret;
 	}
 }
 
