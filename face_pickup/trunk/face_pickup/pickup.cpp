@@ -15,7 +15,8 @@
 #include "extractors.h"
 #include "detectors.h"
 #include "util.h"
-#include "faceapi.h"
+#include "tracker.h"
+#include "detection_thread.h"
 
 #include <boost/thread.hpp>
 
@@ -33,19 +34,12 @@ int main ()
 {
 	cvNamedWindow("Capture");
 	HeadTracker tracker;
+	SmileDetectionLoop sloop(&tracker);
 	tracker.Start(false);
-	for (int i = 0; i < 100; i++)
-	{
-		HeadData *data = tracker.GetCurrentHeadData();
-		if (data != 0)
-		{
-			data->ReleaseImage();
-			delete data;
-		}
-		Sleep(30);
-	}
+	sloop.Start();
 	cvWaitKey(0);
 	tracker.Stop();
+	sloop.Stop();
 	cvDestroyAllWindows();
 	return 0;
 }

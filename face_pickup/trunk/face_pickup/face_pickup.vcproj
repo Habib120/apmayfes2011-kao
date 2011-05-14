@@ -248,6 +248,10 @@
 			<Filter
 				Name="detection_thread"
 				>
+				<File
+					RelativePath=".\SmileDetectionLoop.cpp"
+					>
+				</File>
 			</Filter>
 		</Filter>
 		<Filter
@@ -272,15 +276,15 @@
 				>
 			</File>
 			<File
-				RelativePath=".\faceapi.h"
-				>
-			</File>
-			<File
 				RelativePath=".\network.h"
 				>
 			</File>
 			<File
 				RelativePath=".\structure.h"
+				>
+			</File>
+			<File
+				RelativePath=".\tracker.h"
 				>
 			</File>
 			<File

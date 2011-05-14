@@ -1,6 +1,7 @@
 #include "structure.h"
 #include "cv.h"
 #include "highgui.h"
+#include "sm_api.h"
 #include <boost/thread/mutex.hpp>
 #include <boost/thread/thread.hpp>
 
