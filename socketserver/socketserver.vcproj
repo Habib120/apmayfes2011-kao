@@ -5,6 +5,10 @@
 	Name="socketserver"
 	ProjectGUID="{C582707F-A818-4EE3-AA15-7B575897F8AF}"
 	RootNamespace="socketserver"
+	SccProjectName="Svn"
+	SccAuxPath="Svn"
+	SccLocalPath="Svn"
+	SccProvider="SubversionScc"
 	TargetFrameworkVersion="196613"
 	>
 	<Platforms>
