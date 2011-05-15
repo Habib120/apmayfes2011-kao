@@ -2,11 +2,6 @@
 Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "socketclient", "socketclient.vcproj", "{0A15A1E4-31C1-4A33-AFE6-2C6727434AD2}"
-	ProjectSection(ProjectDependencies) = postProject
-		{C582707F-A818-4EE3-AA15-7B575897F8AF} = {C582707F-A818-4EE3-AA15-7B575897F8AF}
-	EndProjectSection
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "socketserver", "..\socketserver\socketserver.vcproj", "{C582707F-A818-4EE3-AA15-7B575897F8AF}"
 EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
@@ -22,10 +17,6 @@ Global
 		{0A15A1E4-31C1-4A33-AFE6-2C6727434AD2}.Debug|Win32.Build.0 = Debug|Win32
 		{0A15A1E4-31C1-4A33-AFE6-2C6727434AD2}.Release|Win32.ActiveCfg = Release|Win32
 		{0A15A1E4-31C1-4A33-AFE6-2C6727434AD2}.Release|Win32.Build.0 = Release|Win32
-		{C582707F-A818-4EE3-AA15-7B575897F8AF}.Debug|Win32.ActiveCfg = Debug|Win32
-		{C582707F-A818-4EE3-AA15-7B575897F8AF}.Debug|Win32.Build.0 = Debug|Win32
-		{C582707F-A818-4EE3-AA15-7B575897F8AF}.Release|Win32.ActiveCfg = Release|Win32
-		{C582707F-A818-4EE3-AA15-7B575897F8AF}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
