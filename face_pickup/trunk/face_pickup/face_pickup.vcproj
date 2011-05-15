@@ -62,8 +62,9 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="cv210d.lib cvaux210d.lib cxcore210d.lib cxts210.lib highgui210d.lib ml210d.lib opencv_ffmpeg210d.lib smft32.lib smftcpp.lib"
-				AdditionalLibraryDirectories="&quot;C:\Program Files\boost\boost_1_46_1\lib&quot;;C:\OpenCV2.1\build\lib\Debug;C:\OpenCV2.1\build\lib\Release;&quot;C:\Program Files\SeeingMachines\FaceTrackingAPI_NC 3.2\Wrappers\C++\lib&quot;;&quot;C:\Program Files\SeeingMachines\FaceTrackingAPI_NC 3.2\API\bin&quot;"
+				AdditionalOptions="ws2_32.lib&#x0D;&#x0A;"
+				AdditionalDependencies="cv210d.lib cvaux210d.lib cxcore210d.lib cxts210.lib highgui210d.lib ml210d.lib opencv_ffmpeg210d.lib smft32.lib smftcpp.lib ws2_32.lib"
+				AdditionalLibraryDirectories="&quot;C:\Program Files\boost\boost_1_46_1\lib&quot;;&quot;C:\Program Files\SeeingMachines\FaceTrackingAPI_NC 3.2\API\bin&quot;;C:\OpenCV2.1\build\lib\Release;&quot;C:\Program Files\SeeingMachines\FaceTrackingAPI_NC 3.2\Wrappers\C++\lib&quot;;C:\OpenCV2.1\build\lib\Debug"
 				GenerateDebugInformation="true"
 			/>
 			<Tool
@@ -164,6 +165,65 @@
 				Name="VCPostBuildEventTool"
 			/>
 		</Configuration>
+		<Configuration
+			Name="Test|Win32"
+			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
+			IntermediateDirectory="$(ConfigurationName)"
+			ConfigurationType="4"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				AdditionalIncludeDirectories="&quot;C:\Program Files\SeeingMachines\FaceTrackingAPI_NC 3.2\API\include&quot;;&quot;C:\Program Files\boost\boost_1_46_1\&quot;;C:\OpenCV2.1\include\opencv"
+				MinimalRebuild="true"
+				BasicRuntimeChecks="3"
+				RuntimeLibrary="3"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
+			<Tool
+				Name="VCLibrarianTool"
+				AdditionalDependencies="cv210d.lib cvaux210d.lib cxcore210d.lib cxts210.lib highgui210d.lib ml210d.lib opencv_ffmpeg210d.lib smft32.lib smftcpp.lib ws2_32.lib"
+				AdditionalLibraryDirectories="&quot;C:\Program Files\boost\boost_1_46_1\lib&quot;;&quot;C:\Program Files\SeeingMachines\FaceTrackingAPI_NC 3.2\API\bin&quot;;C:\OpenCV2.1\build\lib\Release;&quot;C:\Program Files\SeeingMachines\FaceTrackingAPI_NC 3.2\Wrappers\C++\lib&quot;;C:\OpenCV2.1\build\lib\Debug"
+				IgnoreAllDefaultLibraries="false"
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+			/>
+		</Configuration>
 	</Configurations>
 	<References>
 	</References>
@@ -230,14 +290,6 @@
 				</File>
 			</Filter>
 			<Filter
-				Name="network"
-				>
-				<File
-					RelativePath=".\Socket.cpp"
-					>
-				</File>
-			</Filter>
-			<Filter
 				Name="faceapi"
 				>
 				<File
@@ -250,6 +302,18 @@
 				>
 				<File
 					RelativePath=".\SmileDetectionLoop.cpp"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="network"
+				>
+				<File
+					RelativePath=".\SocketClient.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\SocketServer.cpp"
 					>
 				</File>
 			</Filter>
