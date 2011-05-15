@@ -1,6 +1,7 @@
+//network.hを一番初めにインクルードする必要がある
+#include "network.h"
 #include "detectors.h"
 #include "structure.h"
-#include "network.h"
 #include "tracker.h"
 #include "extractors.h"
 #include <boost/thread/thread.hpp>
