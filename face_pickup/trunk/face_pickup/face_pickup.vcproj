@@ -234,7 +234,7 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
-				RelativePath=".\pickup.cpp"
+				RelativePath=".\main.cpp"
 				>
 			</File>
 			<Filter
@@ -285,12 +285,16 @@
 				Name="detectors"
 				>
 				<File
+					RelativePath=".\FaceComDetector.cpp"
+					>
+				</File>
+				<File
 					RelativePath=".\SmileDetector.cpp"
 					>
 				</File>
 			</Filter>
 			<Filter
-				Name="faceapi"
+				Name="tracker"
 				>
 				<File
 					RelativePath=".\HeadTracker.cpp"
@@ -300,6 +304,14 @@
 			<Filter
 				Name="detection_thread"
 				>
+				<File
+					RelativePath=".\FaceComDetectionLoop.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\PersonDetectionLoop.cpp"
+					>
+				</File>
 				<File
 					RelativePath=".\SmileDetectionLoop.cpp"
 					>

@@ -74,13 +74,13 @@ void SocketClient::Send(std::string message)
 
 	 send(sock, "rotate 1", 8, 0);
 	 memset(buf, 0, sizeof(buf));
-	 int n = recv(sock, buf, sizeof(buf), 0);
+	 /*int n = recv(sock, buf, sizeof(buf), 0);
 	 if (n < 0) {
 		 printf("recv : %d\n", WSAGetLastError());
 		 return;
-	 }
+	 }*/
 
-	 printf("%d, %s\n", n, buf);
+	 //printf("%d, %s\n", n, buf);
 
 	 closesocket(sock);
 

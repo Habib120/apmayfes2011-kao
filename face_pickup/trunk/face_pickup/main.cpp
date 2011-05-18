@@ -2,6 +2,7 @@
 
 //network.hを一番初めにインクルードすること
 #include "network.h"
+#include "detectors.h"
 #include <stdio.h>
 #include <cv.h>
 #include <highgui.h>
@@ -34,26 +35,15 @@ using std::string;
 
 int main ()
 {
-	SocketServer server;
-	server.Start();
-	for (int i = 0; i < 1000; i++)
+	HeadData data = HeadData::GetTestData();
+	FaceComDetector detector;
+	for (int i = 0; i < 10; i++)
 	{
-		std::cout << "client" << i << std::endl;
-		SocketClient client;
-		client.Send("rotate 1");
-		Sleep(60);
+		FaceComDetectionResult result = detector.Detect(data);
+		std::string msg = result.HasData() ? "detection success!" : "detection failure!";
+		cout << msg << endl;
+		cout << "is_smiling : " << result.is_smiling << " confidence : " << result.con_smiling << endl;
+		cout << "is_male : "    << result.is_male    << " confidence : " << result.con_gender  << endl;
+		cout << "has_glasses : "<< result.has_glasses<< " confidence : " << result.con_glasses << endl;
 	}
-	server.Stop();
-	char c;
-	std::cin >> c;
-	//cvNamedWindow("Capture");
-	//HeadTracker tracker;
-	//SmileDetectionLoop sloop(&tracker);
-	//tracker.Start(false);
-	//sloop.Start();
-	//cvWaitKey(0);
-	//tracker.Stop();
-	//sloop.Stop();
-	//cvDestroyAllWindows();
-	return 0;
 }
