@@ -247,6 +247,10 @@
 					>
 				</File>
 				<File
+					RelativePath=".\FaceComDetectorTest.cpp"
+					>
+				</File>
+				<File
 					RelativePath=".\GaborExtractorTest.cpp"
 					>
 				</File>

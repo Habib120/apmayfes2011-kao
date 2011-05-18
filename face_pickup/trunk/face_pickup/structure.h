@@ -19,6 +19,7 @@ public:
 	void SetImage(IplImage* image);
 	void ReleaseImage();
 	HeadPose pose;
+	static HeadData GetTestData();
 protected:
 	IplImage* image;
 };
