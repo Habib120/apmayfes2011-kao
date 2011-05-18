@@ -150,9 +150,9 @@ FaceComDetectionResult FaceComDetector::Detect(HeadData data)
 			FaceComDetectionResult result(true);
 			result.is_male = v2.second.get<string>("attributes.gender.value") == "male";
 			result.con_gender = v2.second.get<double>("attributes.gender.confidence");
-			result.is_smiling = v2.second.get<string>("attributes.smiling.value") == "male";
+			result.is_smiling = v2.second.get<bool>("attributes.smiling.value");
 			result.con_smiling = v2.second.get<double>("attributes.smiling.confidence");
-			result.has_glasses = v2.second.get<string>("attributes.glasses.value") == "male";
+			result.has_glasses = v2.second.get<bool>("attributes.glasses.value");
 			result.con_glasses = v2.second.get<double>("attributes.glasses.confidence");
 			
 			return result;
