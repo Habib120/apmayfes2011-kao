@@ -27,3 +27,25 @@ protected :
 	boost::thread *loop_thread;
 	bool stop;
 };
+
+class FaceComDetectionLoop
+{
+public :
+	FaceComDetectionLoop(HeadTracker *t) : tracker(t), stop(false)
+	{
+		detector = new FaceComDetector();
+	}
+	~FaceComDetectionLoop()
+	{
+		delete detector;
+	}
+	void Start();
+	void Stop();
+	void operator()();
+protected :
+	FaceComDetectionLoop() {}
+	HeadTracker *tracker;
+	FaceComDetector *detector;
+	boost::thread *loop_thread;
+	bool stop;
+};

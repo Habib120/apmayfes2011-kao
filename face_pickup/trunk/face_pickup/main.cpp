@@ -35,15 +35,14 @@ using std::string;
 
 int main ()
 {
-	HeadData data = HeadData::GetTestData();
-	FaceComDetector detector;
-	for (int i = 0; i < 10; i++)
-	{
-		FaceComDetectionResult result = detector.Detect(data);
-		std::string msg = result.HasData() ? "detection success!" : "detection failure!";
-		cout << msg << endl;
-		cout << "is_smiling : " << result.is_smiling << " confidence : " << result.con_smiling << endl;
-		cout << "is_male : "    << result.is_male    << " confidence : " << result.con_gender  << endl;
-		cout << "has_glasses : "<< result.has_glasses<< " confidence : " << result.con_glasses << endl;
-	}
+	HeadTracker tracker;
+	FaceComDetectionLoop facecom(&tracker);
+
+	tracker.Start(true);
+	facecom.Start();
+
+	cvNamedWindow("test");
+	cvWaitKey(0);
+	facecom.Stop();
+	tracker.Stop();
 }
