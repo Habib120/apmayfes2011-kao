@@ -28,10 +28,13 @@ void ImageUtils::rotateImage( IplImage *img, double angle, cv::Point2f center)
  */
 IplImage* ImageUtils::clipHeadImage(IplImage* src, HeadPose pose)
 {
+	IplImage *result;
+	result = cvCreateImage(cvSize(128,128), IPL_DEPTH_8U, 3);
+	cvSetZero(result);
 	//Šç‚ªŒŸo‚³‚ê‚Ä‚¢‚È‚¢ê‡‚Í‰½‚à•Ô‚³‚È‚¢
 	if (!pose.isValueSet())
 	{
-		return 0;
+		return result;
 	}
 	int center_row,center_col,start_col,end_col,start_row,end_row;
 	cv::Point2f center;
@@ -67,14 +70,12 @@ IplImage* ImageUtils::clipHeadImage(IplImage* src, HeadPose pose)
 		double r=0;
 		dst.copyTo(dst2);
 		IplImage dimg = dst2;
-		IplImage *result;
-		result = cvCreateImage(cvSize(128,128), IPL_DEPTH_8U, 3);
 		cvResize(&dimg, result, CV_INTER_LINEAR);
 		return result;
 		//cout << "result" << r << endl;
 	}
 	else
 	{
-		return 0;
+		return result;
 	}
 }

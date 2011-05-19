@@ -15,6 +15,7 @@ public :
 	void Start(bool with_dbg = true);
 	void Stop();
 	HeadData* GetCurrentHeadData();
+	HeadPose  GetCurrentHeadPose();
 	IplImage* GetCurrentCamImage();
 	void operator()();
 private :
