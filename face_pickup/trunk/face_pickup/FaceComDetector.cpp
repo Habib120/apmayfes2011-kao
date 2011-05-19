@@ -139,10 +139,15 @@ FaceComDetectionResult FaceComDetector::Detect(HeadData data)
 	{
 		jsondata << line << endl;
 	}
+	//cout << jsondata.str() << endl;
 
 	//–{•¶‚ÌŽæ“¾
 	ptree pt;
 	read_json(jsondata, pt);
+	if (pt.get<string>("status") == "failure")
+	{
+		return FaceComDetectionResult(false);
+	}
 	BOOST_FOREACH(ptree::value_type &v, pt.get_child("photos"))
 	{
 		BOOST_FOREACH(ptree::value_type &v2, v.second.get_child("tags"))

@@ -7,7 +7,7 @@ void SocketClient::Send(std::string message)
 	 WSADATA wsaData;
 	 struct sockaddr_in server;
 	 SOCKET sock;
-	 char buf[32];
+	 char buf[1024];
 	 char *deststr;
 	 unsigned int **addrptr;
 
@@ -72,15 +72,15 @@ void SocketClient::Send(std::string message)
 		 }
 	 }
 
-	 send(sock, "rotate 1", 8, 0);
+	 send(sock, message.c_str(), message.size(), 0);
 	 memset(buf, 0, sizeof(buf));
-	 /*int n = recv(sock, buf, sizeof(buf), 0);
+	 int n = recv(sock, buf, sizeof(buf), 0);
 	 if (n < 0) {
 		 printf("recv : %d\n", WSAGetLastError());
 		 return;
-	 }*/
+	 }
 
-	 //printf("%d, %s\n", n, buf);
+	 printf("%d, %s\n", n, buf);
 
 	 closesocket(sock);
 

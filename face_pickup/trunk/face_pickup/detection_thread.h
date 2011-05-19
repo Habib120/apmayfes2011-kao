@@ -49,3 +49,22 @@ protected :
 	boost::thread *loop_thread;
 	bool stop;
 };
+
+class PersonDetectionLoop
+{
+public :
+	PersonDetectionLoop(HeadTracker *t) : tracker(t), stop(false), person(false), person_confidence(0)
+	{
+	}
+	void Start();
+	void Stop();
+	void operator()();
+protected :
+	PersonDetectionLoop() {}
+	HeadTracker *tracker;
+	boost::thread *loop_thread;
+	bool stop;
+	bool person;
+	double person_confidence;
+	static const int RUN_AVG_NUM = 70;
+};

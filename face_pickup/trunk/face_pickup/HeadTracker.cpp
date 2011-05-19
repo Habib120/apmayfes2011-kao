@@ -114,6 +114,11 @@ void HeadTracker::operator()()
 		delete cpose;
 	}
 }
+HeadPose HeadTracker::GetCurrentHeadPose()
+{
+	boost::mutex::scoped_lock plock(mt_pose);
+	return pose;
+}
 
 HeadData* HeadTracker::GetCurrentHeadData()
 {
