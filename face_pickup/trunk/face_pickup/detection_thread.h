@@ -31,7 +31,7 @@ protected :
 class FaceComDetectionLoop
 {
 public :
-	FaceComDetectionLoop(HeadTracker *t) : tracker(t), stop(false)
+	FaceComDetectionLoop(HeadTracker *t) : tracker(t), stop(false), is_smiling(false)
 	{
 		detector = new FaceComDetector();
 	}
@@ -47,6 +47,7 @@ protected :
 	HeadTracker *tracker;
 	FaceComDetector *detector;
 	boost::thread *loop_thread;
+	bool is_smiling;
 	bool stop;
 };
 

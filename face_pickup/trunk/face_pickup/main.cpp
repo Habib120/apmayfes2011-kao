@@ -36,14 +36,17 @@ using std::string;
 int main ()
 {
 	HeadTracker tracker;
+	PersonDetectionLoop pl(&tracker);
+	FaceComDetectionLoop fl(&tracker);
 	tracker.Start();
-	PersonDetectionLoop sl(&tracker);
-	sl.Start();
+	pl.Start();
+	fl.Start();
 
 	cvNamedWindow("test");
 	cvWaitKey(0);
 
-	sl.Stop();
+	fl.Stop();
+	pl.Stop();
 	tracker.Stop();
 	cvDestroyAllWindows();
 	return 0;

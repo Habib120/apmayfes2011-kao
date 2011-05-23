@@ -7,6 +7,7 @@ class HeadPose
 public:
 	//CvRect GetHeadAreaInCam();
 	double x, y, z;
+	double rx, ry, rz;
 	double rot;
 	bool isValueSet() const;
 };

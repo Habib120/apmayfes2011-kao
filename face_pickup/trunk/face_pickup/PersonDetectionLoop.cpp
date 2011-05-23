@@ -25,25 +25,24 @@ void PersonDetectionLoop::operator()()
 		double p;
 		if (pose.isValueSet())
 		{
-			p = 2;
+			p = 3;
 			if (person)
 			{
 				//client.Send("Hello, I'm cpp client");
-				std::string msg = (boost::format("person_head||%f %f %f") % pose.x % pose.y % pose.z).str();
+				std::string msg = (boost::format("head_pose||%f %f %f %f %f %f") % pose.x % pose.y % pose.z % pose.rx % pose.ry %pose.rz).str();
 				client.Send(msg);
 			}
 		}
-		else 
+		else
 		{
-			p = 0;
+			p = -3;
 		}
 		person_confidence = (person_confidence * (RUN_AVG_NUM - 1) + p) / RUN_AVG_NUM;
-		std::cout << person_confidence << std::endl;
 
 		if (!person && person_confidence > 0.5)
 		{
 			person = true;
-			person_confidence = 2;
+			person_confidence = 3;
 			client.Send("customer_comein");
 		}
 		else if(person && person_confidence < 0.5)

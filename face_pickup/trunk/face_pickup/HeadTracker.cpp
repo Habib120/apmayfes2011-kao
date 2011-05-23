@@ -19,6 +19,9 @@ void STDCALL recieveHeadPose(void *,smEngineHeadPoseData head_pose, smCameraVide
 	pose.x = head_pose.head_pos.x;
 	pose.y = head_pose.head_pos.y;
 	pose.z = head_pose.head_pos.z;
+	pose.rx = head_pose.head_rot.x_rads;
+	pose.ry = head_pose.head_rot.y_rads;
+	pose.rz = head_pose.head_rot.z_rads;
 	pose.rot = head_pose.head_rot.z_rads;
 }
 
