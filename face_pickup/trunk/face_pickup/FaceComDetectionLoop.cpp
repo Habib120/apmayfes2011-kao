@@ -18,6 +18,7 @@ void FaceComDetectionLoop::Stop()
 
 void FaceComDetectionLoop::operator()()
 {
+	SocketClient client;
 	while (!stop)
 	{
 		HeadData *data = tracker->GetCurrentHeadData();
@@ -25,11 +26,18 @@ void FaceComDetectionLoop::operator()()
 		if (data != 0)
 		{
 			FaceComDetectionResult result = detector->Detect(*data);
-			std::string msg = result.HasData() ? "detection success!" : "detection failure!";
-			cout << msg << endl;
-			cout << "is_smiling : " << result.is_smiling << " confidence : " << result.con_smiling << endl;
-			cout << "is_male : "    << result.is_male    << " confidence : " << result.con_gender  << endl;
-			cout << "has_glasses : "<< result.has_glasses<< " confidence : " << result.con_glasses << endl;
+			if (result.HasData())
+			{
+				if (result.is_smiling && !is_smiling)
+				{
+					client.Send("customer_smiled");
+				}
+				else if (!result.is_smiling && is_smiling)
+				{
+					client.Send("customer_dissmiled");
+				}
+				is_smiling = result.is_smiling;
+			}
 			data->ReleaseImage();
 			delete data;
 		}
