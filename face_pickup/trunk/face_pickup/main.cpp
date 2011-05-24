@@ -37,15 +37,15 @@ int main ()
 {
 	HeadTracker tracker;
 	PersonDetectionLoop pl(&tracker);
-	FaceComDetectionLoop fl(&tracker);
+	//FaceComDetectionLoop fl(&tracker);
 	tracker.Start();
 	pl.Start();
-	fl.Start();
+	//fl.Start();
 
 	cvNamedWindow("test");
 	cvWaitKey(0);
 
-	fl.Stop();
+	//fl.Stop();
 	pl.Stop();
 	tracker.Stop();
 	cvDestroyAllWindows();

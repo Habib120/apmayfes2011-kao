@@ -65,20 +65,25 @@ void FaceComDetector::initialize()
 	footer_str = f_stream.str();
 }
 
-FaceComDetectionResult FaceComDetector::Detect(HeadData data)
+std::vector<FaceComDetectionResult> FaceComDetector::Detect(HeadData data)
 {
+	return this->Detect(data.GetImage());
+}
+
+std::vector<FaceComDetectionResult> FaceComDetector::Detect(IplImage* image)
+{
+	std::vector<FaceComDetectionResult> results;
 	if (header_size == 0)
 		initialize();
 	
 	//顔画像データの保存
-	IplImage* img = data.GetImage();
-	cvSaveImage("test.jpg", img);
+	cvSaveImage("test.jpg", image);
 
 	//ファイルストリームを開く
 	ifstream f("test.jpg" ,ios::in | ios_base::binary);
 	if (!f){
 		cerr << "ファイルが開けません "<< endl;
-		return FaceComDetectionResult(false);
+		return results;
 	}
 
 	//画像サイズの取得
@@ -89,7 +94,7 @@ FaceComDetectionResult FaceComDetector::Detect(HeadData data)
 	ip::tcp::iostream s( ipaddress, "80" );
 	if(s.fail()){
         cerr << "Webサーバが応答しません" << endl;
-		return FaceComDetectionResult(false);
+		return results;
 	}
 
 	//POSTデータの書き込み
@@ -124,7 +129,7 @@ FaceComDetectionResult FaceComDetector::Detect(HeadData data)
 	}
 	if(statuscode != 200){
 		cerr << "Error connecting face api -- statuscode : "  << statuscode << endl;
-		return FaceComDetectionResult(false);
+		return results;
 	}
 
 	//jsonデータの取得
@@ -146,13 +151,14 @@ FaceComDetectionResult FaceComDetector::Detect(HeadData data)
 	read_json(jsondata, pt);
 	if (pt.get<string>("status") == "failure")
 	{
-		return FaceComDetectionResult(false);
+		return results;
 	}
+
 	BOOST_FOREACH(ptree::value_type &v, pt.get_child("photos"))
 	{
 		BOOST_FOREACH(ptree::value_type &v2, v.second.get_child("tags"))
 		{
-			FaceComDetectionResult result(true);
+			FaceComDetectionResult result;
 			result.is_male = v2.second.get<string>("attributes.gender.value") == "male";
 			result.con_gender = v2.second.get<double>("attributes.gender.confidence");
 			result.is_smiling = v2.second.get<bool>("attributes.smiling.value");
@@ -160,9 +166,9 @@ FaceComDetectionResult FaceComDetector::Detect(HeadData data)
 			result.has_glasses = v2.second.get<bool>("attributes.glasses.value");
 			result.con_glasses = v2.second.get<double>("attributes.glasses.confidence");
 			
-			return result;
+			results.push_back(result);
 		}
 	}
 
-	return FaceComDetectionResult(false);
+	return results;
 }

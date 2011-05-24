@@ -25,9 +25,10 @@ void FaceComDetectionLoop::operator()()
 		std::cout << data << std::endl;
 		if (data != 0)
 		{
-			FaceComDetectionResult result = detector->Detect(*data);
-			if (result.HasData())
+			std::vector<FaceComDetectionResult> results = detector->Detect(*data);
+			if (results.size() > 0)
 			{
+				FaceComDetectionResult result = results.at(0);
 				if (result.is_smiling && !is_smiling)
 				{
 					client.Send("customer_smiled");
