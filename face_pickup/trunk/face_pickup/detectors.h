@@ -18,9 +18,6 @@ protected:
 class FaceComDetectionResult
 {
 public:
-	FaceComDetectionResult(bool hasData)
-		: has_data(hasData) {}
-	bool HasData() {return has_data;}
 	bool is_smiling;
 	bool has_glasses;
 	bool is_male;
@@ -29,13 +26,13 @@ public:
 	double con_gender;
 	bool has_data;
 protected:
-
 };
 
 class FaceComDetector
 {
 public:
-	virtual FaceComDetectionResult Detect(HeadData data);
+	virtual std::vector<FaceComDetectionResult> Detect(HeadData data);
+	virtual std::vector<FaceComDetectionResult> Detect(IplImage* image);
 protected:
 	void initialize();
 	static std::string host;

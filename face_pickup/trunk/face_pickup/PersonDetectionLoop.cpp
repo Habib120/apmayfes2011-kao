@@ -4,6 +4,7 @@
 #include "extractors.h"
 #include <boost/ref.hpp>
 #include <boost/format.hpp>
+#include <boost/lexical_cast.hpp>
 
 void PersonDetectionLoop::Start()
 {
@@ -25,32 +26,36 @@ void PersonDetectionLoop::operator()()
 		double p;
 		if (pose.isValueSet())
 		{
-			p = 3;
-			if (person)
+			if (!person)
 			{
-				//client.Send("Hello, I'm cpp client");
-				std::string msg = (boost::format("head_pose||%f %f %f %f %f %f") % pose.x % pose.y % pose.z % pose.rx % pose.ry %pose.rz).str();
-				client.Send(msg);
-			}
-		}
-		else
-		{
-			p = -3;
-		}
-		person_confidence = (person_confidence * (RUN_AVG_NUM - 1) + p) / RUN_AVG_NUM;
+				while (true)
+				{
+					FaceComDetector detector;
+					IplImage* cam_image = tracker->GetCurrentCamImage();
+					IplImage* simage = cvCreateImage(cvSize(320, 240), IPL_DEPTH_8U, 3);
+					cvResize(cam_image, simage);
+					std::vector<FaceComDetectionResult> results = detector.Detect(simage);
+					if (results.size() > 0)
+					{
+						int pcount = results.size();
+						std::string msg = "customer_comein||";
+						msg += boost::lexical_cast<std::string>(pcount);
+						for (int i = 0; i < pcount; i++)
+						{
 
-		if (!person && person_confidence > 0.5)
-		{
-			person = true;
-			person_confidence = 3;
-			client.Send("customer_comein");
+							std::cout << "is_male : " << results.at(i).is_male << " confidence : " << results.at(i).con_gender << std::endl;
+							msg += (boost::format(" {%s, %s}") % std::string(results.at(i).is_male ? "male" : "female") % std::string(results.at(i).has_glasses ? "glasses" : "no_glasses")).str();
+						}
+						client.Send(msg);
+					}
+					cvReleaseImage(&cam_image);
+				}
+				person = true;
+			}
+			std::string msg = (boost::format("head_pose||%f %f %f %f %f %f") % pose.x % pose.y % pose.z % pose.rx % pose.ry %pose.rz).str();
+			client.Send(msg);
 		}
-		else if(person && person_confidence < 0.5)
-		{
-			person = false;
-			person_confidence = 0;
-			client.Send("customer_leave");
-		}
+
 		Sleep(50);
 	}
 }
