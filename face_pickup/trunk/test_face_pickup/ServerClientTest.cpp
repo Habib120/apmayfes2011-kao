@@ -18,7 +18,7 @@ protected:
 
 // 以下はCounterTestクラスの実装-----
 
-CPPUNIT_TEST_SUITE_REGISTRATION( ServerClientTest ); // 
+//CPPUNIT_TEST_SUITE_REGISTRATION( ServerClientTest ); // 
 
 // 各テスト・ケースの実行直前に呼ばれる
 void ServerClientTest::setUp() {

@@ -88,7 +88,7 @@
 			<Tool
 				Name="VCPostBuildEventTool"
 				Description="ビルド後のイベントを実行しています！！"
-				CommandLine="copy &quot;$(ProjectDir)face_0000.jpg&quot; &quot;$(OutDir)\face_0000.jpg&quot;&#x0D;&#x0A;copy &quot;$(ProjectDir)rtrees.xml&quot; &quot;$(OutDir)\rtrees.xml&quot;&#x0D;&#x0A;"
+				CommandLine="copy &quot;$(ProjectDir)face_0000.jpg&quot; &quot;$(OutDir)\face_0000.jpg&quot;&#x0D;&#x0A;copy &quot;$(ProjectDir)rtrees.xml&quot; &quot;$(OutDir)\rtrees.xml&quot;&#x0D;&#x0A;copy &quot;$(ProjectDir)moulin_photo01.jpg&quot; &quot;$(OutDir)\&quot;&#x0D;&#x0A;"
 			/>
 		</Configuration>
 		<Configuration
@@ -204,7 +204,6 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				AdditionalDependencies="cv210d.lib cvaux210d.lib cxcore210d.lib cxts210.lib highgui210d.lib ml210d.lib opencv_ffmpeg210d.lib smft32.lib smftcpp.lib ws2_32.lib"
 				AdditionalLibraryDirectories="&quot;C:\Program Files\boost\boost_1_46_1\lib&quot;;&quot;C:\Program Files\SeeingMachines\FaceTrackingAPI_NC 3.2\API\bin&quot;;C:\OpenCV2.1\build\lib\Release;&quot;C:\Program Files\SeeingMachines\FaceTrackingAPI_NC 3.2\Wrappers\C++\lib&quot;;C:\OpenCV2.1\build\lib\Debug"
 				IgnoreAllDefaultLibraries="false"
 			/>
@@ -222,6 +221,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
+				CommandLine="copy &quot;$(ProjectDir)face_0000.jpg&quot; &quot;$(OutDir)\face_0000.jpg&quot;&#x0D;&#x0A;copy &quot;$(ProjectDir)mask.png&quot; &quot;$(OutDir)\&quot;&#x0D;&#x0A;copy &quot;$(ProjectDir)maskA.png&quot; &quot;$(OutDir)\&quot;"
 			/>
 		</Configuration>
 	</Configurations>
@@ -329,6 +329,14 @@
 					>
 				</File>
 			</Filter>
+			<Filter
+				Name="photo"
+				>
+				<File
+					RelativePath=".\MoulinPhotoMaker.cpp"
+					>
+				</File>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="ヘッダー ファイル"
@@ -353,6 +361,10 @@
 			</File>
 			<File
 				RelativePath=".\network.h"
+				>
+			</File>
+			<File
+				RelativePath=".\photo.h"
 				>
 			</File>
 			<File
@@ -400,6 +412,22 @@
 			>
 			<File
 				RelativePath=".\rtrees.xml"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="images"
+			>
+			<File
+				RelativePath=".\mask.png"
+				>
+			</File>
+			<File
+				RelativePath=".\maskA.png"
+				>
+			</File>
+			<File
+				RelativePath=".\moulin_photo01.jpg"
 				>
 			</File>
 		</Filter>

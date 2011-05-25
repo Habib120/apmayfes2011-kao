@@ -19,9 +19,10 @@
 #include "detectors.h"
 #include "util.h"
 #include "tracker.h"
+#include "photo.h"
 #include "detection_thread.h"
 
-#include <boost/thread.hpp>
+#include <boost/thread/thread.hpp>
 
 //#include <stdlib.h>
 //#include <crtdbg.h>
@@ -35,19 +36,32 @@ using std::string;
 
 int main ()
 {
-	HeadTracker tracker;
-	PersonDetectionLoop pl(&tracker);
+	IplImage* image = cvLoadImage("moulin_photo01.jpg");
+	FaceComDetector detector;
+	std::vector<FaceComDetectionResult> results = detector.Detect(image);
+	
+	std::cout << std::endl << "GetMoulinPhoto‚ÌTest‚ðŠJŽn‚µ‚Ü‚·" << std::endl;
+	cv::Mat imagem = image;
+	cv::imshow("src", imagem);
+	IplImage* photo = MoulinPhotoMaker::GetMoulinPhoto(image, results);
+	cv::Mat photom = photo;
+	cv::imshow("photo", photo);
+	cv::waitKey(0);
+	std::cout << "Œ‹‰Ê‚Í³‚µ‚¢‚Å‚·‚©H" << std::endl;
+
+	//HeadTracker tracker;
+	//PersonDetectionLoop pl(&tracker);
 	//FaceComDetectionLoop fl(&tracker);
-	tracker.Start();
-	pl.Start();
+	//tracker.Start();
+	//pl.Start();
 	//fl.Start();
 
-	cvNamedWindow("test");
-	cvWaitKey(0);
+	//cvNamedWindow("test");
+	//cvWaitKey(0);
 
 	//fl.Stop();
-	pl.Stop();
-	tracker.Stop();
-	cvDestroyAllWindows();
-	return 0;
+	//pl.Stop();
+	//tracker.Stop();
+	//cvDestroyAllWindows();
+	//return 0;
 }

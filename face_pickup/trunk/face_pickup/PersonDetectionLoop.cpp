@@ -47,11 +47,22 @@ void PersonDetectionLoop::operator()()
 							msg += (boost::format(" {%s, %s}") % std::string(results.at(i).is_male ? "male" : "female") % std::string(results.at(i).has_glasses ? "glasses" : "no_glasses")).str();
 						}
 						client.Send(msg);
+						cvReleaseImage(&cam_image);
+						break;
 					}
 					cvReleaseImage(&cam_image);
 				}
 				person = true;
 			}
+			if (pose.ry < -3.14/8.0 )
+			{	
+				client.Send("customer_turnright");
+			}
+			else if (pose.ry > 3.14/8.0)
+			{
+				client.Send("customer_turnleft");
+			}
+			
 			std::string msg = (boost::format("head_pose||%f %f %f %f %f %f") % pose.x % pose.y % pose.z % pose.rx % pose.ry %pose.rz).str();
 			client.Send(msg);
 		}

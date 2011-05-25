@@ -11,7 +11,7 @@ void SocketServer::Start()
 	//アドレスファミリーはINET(共通)
 	source.sin_family = AF_INET;
 	//ポート番号はクライアントプログラムと共通
-	source.sin_port = htons(PORT);
+	source.sin_port = htons(SERVER_PORT);
 	//どこからの接続要求も受け入れる
 	source.sin_addr.s_addr = htonl(INADDR_ANY);
 

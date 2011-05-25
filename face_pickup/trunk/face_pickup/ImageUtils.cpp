@@ -79,3 +79,42 @@ IplImage* ImageUtils::clipHeadImage(IplImage* src, HeadPose pose)
 		return result;
 	}
 }
+
+bool ImageUtils::drawAlphaImage(IplImage* bgImg, IplImage* rgbImg, IplImage* alphaImg, int x, int y, int width, int height){
+	if(x+width <= 0 || y+height <= 0 || x >= bgImg->width || y >= bgImg->height 
+		/*||width >= (bgImg->width-x) || height >= (bgImg->height-y)*/)return false;
+	int tmpwidth = x>=0? (width<(bgImg->width-x)? width:(bgImg->width-x)):(width+x);
+	int tmpheight= y>=0? (height<(bgImg->height-y)? height:(bgImg->height-y)):(height+y);
+	IplImage* tmp = cvCreateImage(cvSize(tmpwidth,tmpheight), IPL_DEPTH_8U, 3);
+	IplImage* rgbtmp = cvCreateImage(cvSize(tmpwidth,tmpheight), IPL_DEPTH_8U, 3);
+	IplImage* alphatmp = cvCreateImage(cvSize(tmpwidth,tmpheight), IPL_DEPTH_8U, 3);
+	IplImage* resize =cvCreateImage(cvSize(width,height), IPL_DEPTH_8U, 3);
+	cvSetImageROI(bgImg, cvRect(x>=0? x:0,y>=0? y:0,tmpwidth,tmpheight));
+	cvCopy(bgImg,tmp);
+	cvResize(rgbImg,resize,CV_INTER_LINEAR);
+	cvSetImageROI(resize, cvRect(x>=0? 0:(-x),y>=0? 0:(-y),tmpwidth,tmpheight));
+	cvCopy(resize,rgbtmp);
+	cvResetImageROI(resize);
+	cvResize(alphaImg,resize,CV_INTER_LINEAR);
+	cvSetImageROI(resize, cvRect(x>=0? 0:(-x),y>=0? 0:(-y),tmpwidth,tmpheight));
+	cvCopy(resize,alphatmp);
+	cvResetImageROI(resize);
+	for(int dy=0 ; dy<tmpheight ; dy++){
+		for(int dx=0 ; dx<tmpwidth ; dx++){
+			for(int ch=0 ; ch<3 ; ch++){
+				CV_IMAGE_ELEM(tmp,unsigned char,dy,dx*3+ch)=
+					(char)(CV_IMAGE_ELEM(tmp,unsigned char,dy,dx*3+ch)*((255-CV_IMAGE_ELEM(alphatmp,unsigned char,dy,dx*3))/255.0f)
+					+CV_IMAGE_ELEM(rgbtmp,unsigned char,dy,dx*3+ch)*(CV_IMAGE_ELEM(alphatmp,unsigned char,dy,dx*3)/255.0f));
+			}
+		}
+	}
+	cvCopy(tmp,bgImg);
+	cvReleaseImage(&tmp);
+	cvReleaseImage(&rgbtmp);
+	cvReleaseImage(&alphatmp);
+	cvReleaseImage(&resize);
+	cvResetImageROI(bgImg);
+	return true;
+}
+
+

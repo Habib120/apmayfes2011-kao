@@ -4,7 +4,8 @@
 
 #pragma once 
 
-#define PORT 50008
+#define CLIENT_PORT 50008
+#define SERVER_PORT 50011
 
 class SocketClient
 {

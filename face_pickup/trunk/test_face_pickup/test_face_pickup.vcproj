@@ -41,7 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../face_pickup;c:\OpenCV2.1\include\opencv;&quot;c:\build\cppunit-1.12.0\include&quot;"
+				AdditionalIncludeDirectories="../face_pickup;&quot;C:\Program Files\boost\boost_1_46_1&quot;;c:\OpenCV2.1\include\opencv;&quot;c:\build\cppunit-1.12.0\include&quot;"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
@@ -60,7 +60,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="cppunitd.lib cv210d.lib cvaux210d.lib cxcore210d.lib cxts210.lib highgui210d.lib ml210d.lib opencv_ffmpeg210d.lib"
-				AdditionalLibraryDirectories="c:\OpenCV2.1\build\lib\Release;c:\OpenCV2.1\build\lib\Debug;&quot;C:\build\cppunit-1.12.0\lib&quot;"
+				AdditionalLibraryDirectories="c:\OpenCV2.1\build\lib\Release;c:\OpenCV2.1\build\lib\Debug;&quot;C:\Program Files\boost\boost_1_46_1\lib&quot;;&quot;C:\build\cppunit-1.12.0\lib&quot;"
 				GenerateDebugInformation="true"
 				TargetMachine="1"
 			/>
@@ -84,7 +84,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="copy &quot;$(ProjectDir)cppunit_dll.dll&quot; &quot;$(OutDir)\cppunit_dll.dll&quot;&#x0D;&#x0A;copy &quot;$(ProjectDir)face_0000.jpg&quot; &quot;$(OutDir)\face_0000.jpg&quot;&#x0D;&#x0A;copy &quot;$(ProjectDir)featurepoints_gabor.txt&quot; &quot;$(OutDir)\featurepoints_gabor.txt&quot;&#x0D;&#x0A;"
+				CommandLine="copy &quot;$(ProjectDir)cppunit_dll.dll&quot; &quot;$(OutDir)\cppunit_dll.dll&quot;&#x0D;&#x0A;copy &quot;$(ProjectDir)face_0000.jpg&quot; &quot;$(OutDir)\face_0000.jpg&quot;&#x0D;&#x0A;copy &quot;$(ProjectDir)featurepoints_gabor.txt&quot; &quot;$(OutDir)\featurepoints_gabor.txt&quot;&#x0D;&#x0A;copy &quot;$(ProjectDir)moulin_photo01.jpg&quot; &quot;$(OutDir)\moulin_photo01.jpg&quot;&#x0D;&#x0A;"
 			/>
 		</Configuration>
 		<Configuration
@@ -224,6 +224,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
+				CommandLine="copy &quot;$(ProjectDir)cppunit_dll.dll&quot; &quot;$(OutDir)\cppunit_dll.dll&quot;&#x0D;&#x0A;copy &quot;$(ProjectDir)face_0000.jpg&quot; &quot;$(OutDir)\face_0000.jpg&quot;&#x0D;&#x0A;copy &quot;$(ProjectDir)featurepoints_gabor.txt&quot; &quot;$(OutDir)\featurepoints_gabor.txt&quot;&#x0D;&#x0A;copy &quot;$(ProjectDir)moulin_photo01.jpg&quot; &quot;$(OutDir)\moulin_photo01.jpg&quot;"
 			/>
 		</Configuration>
 	</Configurations>
@@ -256,6 +257,10 @@
 				</File>
 				<File
 					RelativePath=".\HeadPoseTest.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\MoulinPhotoMakerTest.cpp"
 					>
 				</File>
 				<File
@@ -309,6 +314,10 @@
 			</File>
 			<File
 				RelativePath=".\featurepoints_gabor.txt"
+				>
+			</File>
+			<File
+				RelativePath=".\moulin_photo01.jpg"
 				>
 			</File>
 		</Filter>

@@ -4,6 +4,10 @@
 
 void SocketClient::Send(std::string message)
 {
+#ifdef _DEBUG
+	std::cout << message << std::endl;
+	return;
+#endif
 	 WSADATA wsaData;
 	 struct sockaddr_in server;
 	 SOCKET sock;
@@ -25,7 +29,7 @@ void SocketClient::Send(std::string message)
 	 }
 
 	 server.sin_family = AF_INET;
-	 server.sin_port = htons(PORT);
+	 server.sin_port = htons(CLIENT_PORT);
 
 	 server.sin_addr.S_un.S_addr = inet_addr(deststr);
 	 if (server.sin_addr.S_un.S_addr == 0xffffffff) {
