@@ -9,6 +9,9 @@
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/json_parser.hpp>
 #include <boost/foreach.hpp>
+#include <ctime>
+#include <cstdlib>
+#include <sstream>
 
 using namespace std;
 using namespace boost::asio;
@@ -77,10 +80,15 @@ std::vector<FaceComDetectionResult> FaceComDetector::Detect(IplImage* image)
 		initialize();
 	
 	//顔画像データの保存
-	cvSaveImage("test.jpg", image);
+	time_t t = time(0);
+	tm *x = localtime(&t);
+	std::stringstream stream;
+	stream << "face_" << x->tm_mday << "_" << x->tm_hour << "_" << x->tm_min << "_" << x->tm_sec << "_" << rand() << ".jpg";
+	std::string filename = stream.str();
+	cvSaveImage(filename.c_str(), image);
 
 	//ファイルストリームを開く
-	ifstream f("test.jpg" ,ios::in | ios_base::binary);
+	ifstream f(filename.c_str() ,ios::in | ios_base::binary);
 	if (!f){
 		cerr << "ファイルが開けません "<< endl;
 		return results;

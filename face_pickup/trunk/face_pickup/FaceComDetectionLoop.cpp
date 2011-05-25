@@ -22,7 +22,6 @@ void FaceComDetectionLoop::operator()()
 	while (!stop)
 	{
 		HeadData *data = tracker->GetCurrentHeadData();
-		std::cout << data << std::endl;
 		if (data != 0)
 		{
 			std::vector<FaceComDetectionResult> results = detector->Detect(*data);
