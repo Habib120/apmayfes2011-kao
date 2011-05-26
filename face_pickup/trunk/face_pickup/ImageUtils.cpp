@@ -29,6 +29,8 @@ void ImageUtils::rotateImage( IplImage *img, double angle, cv::Point2f center)
 IplImage* ImageUtils::clipHeadImage(IplImage* src, HeadPose pose)
 {
 	IplImage *result;
+	IplImage *large;
+
 	result = cvCreateImage(cvSize(128,128), IPL_DEPTH_8U, 3);
 	cvSetZero(result);
 	//äÁÇ™åüèoÇ≥ÇÍÇƒÇ¢Ç»Ç¢èÍçáÇÕâΩÇ‡ï‘Ç≥Ç»Ç¢
@@ -40,35 +42,56 @@ IplImage* ImageUtils::clipHeadImage(IplImage* src, HeadPose pose)
 	cv::Point2f center;
 
 	cv::Size src_size(cvGetSize(src));
-	center_row = src_size.height/2 + (25 - pose.y*(src_size.height/0.4)*cos(pose.rot))*0.4/pose.z;
-	center_col = src_size.width/2 + (((pose.x*src_size.width+4)/0.4)*cos(pose.rot) + pose.y*(src_size.height/0.3)*sin(pose.rot))*0.4/pose.z;
+
+	large = cvCreateImage(cvSize(2*src_size.width,2*src_size.height),IPL_DEPTH_8U, 3);
+	cvSetZero(large);
+	cv::Size large_size(cvGetSize(large));
+
+	center_row = large_size.height/2 + (25 - pose.y*(src_size.height/0.4)*cos(pose.rot))*0.4/pose.z;
+	center_col = large_size.width/2 + (((pose.x*src_size.width+4)/0.4)*cos(pose.rot) + pose.y*(src_size.height/0.3)*sin(pose.rot))*0.4/pose.z;
 	center.x=center_col;
 	center.y=center_row;
+	
 	//cout << src_size.height << endl;
 
+
 	cv::Size sz;
-	sz.width = 2*floor(src_size.height/(pose.z*10));
+	sz.width = 2*floor(src_size.height/(pose.z*3));
 	//cout << src_size.width << endl;
 	sz.height = sz.width;
+
+	
 	start_col = center_col - sz.width/2;
 	end_col = center_col + sz.width/2;
 	start_row = center_row - sz.height/2;
 	end_row = center_row + sz.height/2;
+	
 	//rot = cv::getRotationMatrix2D(center,rad,1);
 	//mat.create(src_size.height,src_size.width,CV_16SC3);
 	cvFlip(src, src, CV_16SC3);
-	ImageUtils::rotateImage(src,-pose.rot,center);
-	cv::Mat dst(src);
-	cv::Mat dst2 = dst;	
+
+	cv::Mat dst(large);
+	cv::Rect rect(large_size.width/2-src_size.width/2,large_size.height/2-src_size.height/2,src_size.width,src_size.height);
+	cv::Mat subdst = dst(rect);	
+	cv::Mat in(src);
+	in.copyTo(subdst);
+
+    *large = dst;
+	ImageUtils::rotateImage(large,-pose.rot,center);
+	//result = large;
+	//return result;
 	
-	if(start_row > 0 && end_row < src_size.height-20 && start_col > 10 && end_col < src_size.width-30){
-		dst = dst.rowRange(src_size.height/2-sz.height/2,src_size.height/2+sz.height/2);
-		dst = dst.colRange(src_size.width/2-sz.width/2,src_size.width/2+sz.width/2);
-			//cv::getRectSubPix(mat,src_size,center,dst);			
+	cv::Mat dst1(large);
+	cv::Mat dst2(sz,CV_8U);	
+	
+	if(start_row > 0 && end_row < large_size.height-20 && start_col > 10 && end_col < large_size.width-30){
+		dst1 = dst1.rowRange(large_size.height/2-sz.height/2,large_size.height/2+sz.height/2);
+		dst1 = dst1.colRange(large_size.width/2-sz.width/2,large_size.width/2+sz.width/2);
+		//cv::getRectSubPix(mat,src_size,center,dst);			
 		//cv::imshow("Capture", dst);
 
 		double r=0;
-		dst.copyTo(dst2);
+		dst1.copyTo(dst2);
 		IplImage dimg = dst2;
 		cvResize(&dimg, result, CV_INTER_LINEAR);
 		return result;
@@ -78,6 +101,9 @@ IplImage* ImageUtils::clipHeadImage(IplImage* src, HeadPose pose)
 	{
 		return result;
 	}
+	cvReleaseImage(&result);
+	cvReleaseImage(&large);
+
 }
 
 bool ImageUtils::drawAlphaImage(IplImage* bgImg, IplImage* rgbImg, IplImage* alphaImg, int x, int y, int width, int height){
