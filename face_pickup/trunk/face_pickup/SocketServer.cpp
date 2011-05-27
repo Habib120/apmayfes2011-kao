@@ -1,4 +1,5 @@
-#include "network.h"
+#include <winsock2.h>
+#include "connection.h"
 #include <iostream>
 #include <stdio.h>
 
@@ -82,6 +83,7 @@ void SocketServer::operator()()
 		if (result < 0){
 			std::cout << "[server]通信エラー" << std::endl;
 		}
+		handler->Handle(std::string(buffer));
 		printf("[server]%sを受信しました\n", buffer);
 		//クライアントへデータを送信する
 		result = send(s1, ans, 10, 0);

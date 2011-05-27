@@ -21,6 +21,7 @@
 #include "tracker.h"
 #include "photo.h"
 #include "detection_thread.h"
+#include "connection.h"
 
 #include <boost/thread/thread.hpp>
 
@@ -37,18 +38,22 @@ using std::string;
 int main ()
 {
 	HeadTracker tracker;
+	tracker.Start();
+
 	PersonDetectionLoop pl(&tracker);
 	FaceComDetectionLoop fl(&tracker);
+	SocketServer server(&tracker, &pl);
 	tracker.Start();
 	pl.Start();
 	fl.Start();
+	server.Start();
 
 	cvNamedWindow("test");
 	cvWaitKey(0);
 
-	fl.Stop();
-	pl.Stop();
-	tracker.Stop();
-	cvDestroyAllWindows();
-	return 0;
+	//fl.Stop();
+	//pl.Stop();
+	//tracker.Stop();
+	//cvDestroyAllWindows();
+	//return 0;
 }
