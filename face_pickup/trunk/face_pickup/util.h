@@ -13,3 +13,9 @@ public:
 	static void adjustSaturation(IplImage* src, IplImage* dst, unsigned char sparam);
 	static bool drawAlphaImage(IplImage* bgImg, IplImage* rgbImg, IplImage* alphaImg, int x, int y, int width, int height);
 };
+
+class FileUtils
+{
+public:
+	static void DeleteAllTmpImages();
+};

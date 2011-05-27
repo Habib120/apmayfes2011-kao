@@ -4,6 +4,7 @@
 #include "cv.h"
 #include <boost/format.hpp>
 #include <ctime>
+#include <windows.h>
 
 #define MOULIN_PHOTO_SAVE_DIR "C:\\photo\\"
 #define MOULIN_PHOTO_LATEST_DIR "C:\\photo\\latest\\"
@@ -60,6 +61,6 @@ void RequestHandler::Handle(std::string msg)
 
 	else if (header == "reset_game")
 	{
-		this->ploop->ResetState();
+
 	}
 }
