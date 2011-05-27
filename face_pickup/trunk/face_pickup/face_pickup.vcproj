@@ -192,6 +192,7 @@
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
+				DebugInformationFormat="4"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -221,7 +222,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="copy &quot;$(ProjectDir)face_0000.jpg&quot; &quot;$(OutDir)\face_0000.jpg&quot;&#x0D;&#x0A;copy &quot;$(ProjectDir)mask.png&quot; &quot;$(OutDir)\&quot;&#x0D;&#x0A;copy &quot;$(ProjectDir)maskA.png&quot; &quot;$(OutDir)\&quot;"
+				CommandLine="copy &quot;$(ProjectDir)face_0000.jpg&quot; &quot;$(OutDir)\face_0000.jpg&quot;&#x0D;&#x0A;copy &quot;$(ProjectDir)moulin_photo01.jpg&quot; &quot;$(OutDir)\&quot;&#x0D;&#x0A;copy &quot;$(ProjectDir)mask.png&quot; &quot;$(OutDir)\&quot;&#x0D;&#x0A;copy &quot;$(ProjectDir)maskA.png&quot; &quot;$(OutDir)\&quot;&#x0D;&#x0A;"
 			/>
 		</Configuration>
 	</Configurations>
@@ -385,6 +386,14 @@
 			Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav"
 			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
 			>
+			<File
+				RelativePath=".\moulin_photo02.jpg"
+				>
+			</File>
+			<File
+				RelativePath=".\moulin_photo03.jpg"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="test"

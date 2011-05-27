@@ -173,6 +173,12 @@ std::vector<FaceComDetectionResult> FaceComDetector::Detect(IplImage* image)
 			result.con_smiling = v2.second.get<double>("attributes.smiling.confidence");
 			result.has_glasses = v2.second.get<bool>("attributes.glasses.value");
 			result.con_glasses = v2.second.get<double>("attributes.glasses.confidence");
+			double width = v2.second.get<double>("width");
+			double height = v2.second.get<double>("height");
+			double cx = v2.second.get<double>("center.x");
+			double cy = v2.second.get<double>("center.y");
+			CvRect rect = cvRect((int)(cx - width/2), (int)(cy - height/2), (int)width, (int)height);
+			result.face_rect = rect;
 			
 			results.push_back(result);
 		}

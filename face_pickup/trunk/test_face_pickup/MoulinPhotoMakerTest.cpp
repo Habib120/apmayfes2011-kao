@@ -38,7 +38,7 @@ void MoulinPhotoMakerTest::tearDown() {
 
 void MoulinPhotoMakerTest::test_GetMoulinPhoto()
 {
-	IplImage* image = cvLoadImage("moulin_photo01.jpg");
+	IplImage* image = cvLoadImage("moulin_photo03.jpg");
 	FaceComDetector detector;
 	std::vector<FaceComDetectionResult> results = detector.Detect(image);
 	

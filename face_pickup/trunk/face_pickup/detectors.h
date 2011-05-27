@@ -25,6 +25,7 @@ public:
 	double con_glasses;
 	double con_gender;
 	bool has_data;
+	CvRect face_rect;
 protected:
 };
 
