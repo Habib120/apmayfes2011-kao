@@ -12,7 +12,7 @@ IplImage* MoulinPhotoMaker::GetMoulinPhoto(IplImage *camimage, std::vector<FaceC
 	cvCopy(camimage, ccamimage);
 	IplImage* tmp = cvCreateImage(cvSize(ccamimage->width, ccamimage->height), camimage->depth, camimage->nChannels);
 	IplImage* ret = cvCreateImage(cvSize(ccamimage->width, ccamimage->height), camimage->depth, camimage->nChannels);
-	ImageUtils::adjustBrightnessAndContrast(ccamimage, tmp, 55, 40);
+	ImageUtils::adjustBrightnessAndContrast(ccamimage, tmp, 25, 20);
 	ImageUtils::adjustSaturation(tmp, ret, 0);
 	IplImage* mask = cvLoadImage("mask.png");
 	IplImage* mask_alpha = cvLoadImage("maskA.png");

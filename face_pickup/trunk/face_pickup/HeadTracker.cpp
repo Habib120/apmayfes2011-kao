@@ -99,7 +99,7 @@ void HeadTracker::operator()()
 			}
 			hlock.unlock();
 
-			if (true)
+			if (false)
 			{
 				cvShowImage("Capture", face_img);
 			}

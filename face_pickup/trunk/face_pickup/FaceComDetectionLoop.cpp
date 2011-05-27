@@ -28,11 +28,11 @@ void FaceComDetectionLoop::operator()()
 			if (results.size() > 0)
 			{
 				FaceComDetectionResult result = results.at(0);
-				if (result.is_smiling && !is_smiling)
+				if (result.is_smiling)
 				{
 					client.Send("customer_smiled");
 				}
-				else if (!result.is_smiling && is_smiling)
+				else if (!result.is_smiling)
 				{
 					client.Send("customer_dissmiled");
 				}

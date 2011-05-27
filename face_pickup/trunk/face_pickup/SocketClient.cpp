@@ -4,7 +4,7 @@
 
 void SocketClient::Send(std::string message)
 {
-#ifdef _DEBUG
+#ifndef _DEBUG
 	std::cout << message << std::endl;
 	return;
 #endif

@@ -7,6 +7,9 @@
 #include <boost/lexical_cast.hpp>
 #include <algorithm>
 
+boost::mutex mt_person;
+
+bool person;
 void PersonDetectionLoop::Start()
 {
 	loop_thread = new boost::thread(boost::ref(*this));
@@ -20,7 +23,11 @@ void PersonDetectionLoop::Stop()
 
 void PersonDetectionLoop::ResetState()
 {
+	boost::mutex::scoped_lock lock(mt_person, boost::defer_lock);
+	lock.lock();
 	person = false;
+	lock.unlock();
+	//person = false;
 }
 
 void PersonDetectionLoop::operator()()
@@ -32,7 +39,11 @@ void PersonDetectionLoop::operator()()
 		double p;
 		if (pose.isValueSet())
 		{
-			if (!person)
+			boost::mutex::scoped_lock lock(mt_person, boost::defer_lock);
+			lock.lock();
+			bool p = person;
+			lock.unlock();
+			if (!p)
 			{
 				while (true)
 				{
@@ -70,15 +81,15 @@ void PersonDetectionLoop::operator()()
 			{
 				client.Send("customer_turnleft");
 			}
-			else if (pose.rx > 3.14/8.0 + 0.12)
-			{
-				client.Send("customer_turnup");
-			}
-			else if (pose.rx < -3.14/16.0 + 0.12)
-			{
-				client.Send("customer_turndown");
-			}
-			else if (std::abs(pose.ry) < 3.14/16.0 && (std::abs(pose.rz) < 3.14/16.0 && std::abs(pose.rx) < 3.14/16.0))
+			//else if (pose.rx > 3.14/8.0 + 0.12)
+			//{
+			//	client.Send("customer_turnup");
+			//}
+			//else if (pose.rx < -3.14/16.0 + 0.12)
+			//{
+			//	client.Send("customer_turndown");
+			//}
+			else if (std::abs(pose.ry) < 3.14/16.0 && (std::abs(pose.rz)))
 			{
 				client.Send("customer_turnfront");
 			}
