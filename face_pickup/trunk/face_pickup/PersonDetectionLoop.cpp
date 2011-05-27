@@ -70,11 +70,11 @@ void PersonDetectionLoop::operator()()
 			{
 				client.Send("customer_turnleft");
 			}
-			else if (pose.rx > 3.14/8.0)
+			else if (pose.rx > 3.14/8.0 + 0.12)
 			{
 				client.Send("customer_turnup");
 			}
-			else if (pose.rx < -3.14/16.0)
+			else if (pose.rx < -3.14/16.0 + 0.12)
 			{
 				client.Send("customer_turndown");
 			}
