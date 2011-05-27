@@ -37,6 +37,7 @@ using std::string;
 
 int main ()
 {
+	FileUtils::DeleteAllTmpImages();
 	HeadTracker tracker;
 	PersonDetectionLoop pl(&tracker);
 	FaceComDetectionLoop fl(&tracker);

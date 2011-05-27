@@ -278,6 +278,10 @@
 					>
 				</File>
 				<File
+					RelativePath=".\FileUtils.cpp"
+					>
+				</File>
+				<File
 					RelativePath=".\ImageUtils.cpp"
 					>
 				</File>

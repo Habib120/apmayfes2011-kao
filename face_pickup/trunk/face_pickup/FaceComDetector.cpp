@@ -84,7 +84,7 @@ std::vector<FaceComDetectionResult> FaceComDetector::Detect(IplImage* image)
 	tm *x = localtime(&t);
 	std::stringstream stream;
 	stream << "face_" << x->tm_mday << "_" << x->tm_hour << "_" << x->tm_min << "_" << x->tm_sec << "_" << rand() << ".jpg";
-	std::string filename = stream.str();
+	std::string filename = std::string("c:\\tmp\\") + stream.str();
 	cvSaveImage(filename.c_str(), image);
 
 	//ファイルストリームを開く
