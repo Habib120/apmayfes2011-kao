@@ -1,10 +1,15 @@
 //network.hを一番初めにインクルードする必要がある
+#ifndef __DETECTION_THREAD
+#define __DETECTION_THREAD
+#endif
 #include "network.h"
 #include "detectors.h"
 #include "structure.h"
 #include "tracker.h"
 #include "extractors.h"
 #include <boost/thread/thread.hpp>
+
+#pragma once
 
 class SmileDetectionLoop
 {
@@ -60,6 +65,7 @@ public :
 	void Start();
 	void Stop();
 	void operator()();
+	void ResetState();
 protected :
 	PersonDetectionLoop() {}
 	HeadTracker *tracker;

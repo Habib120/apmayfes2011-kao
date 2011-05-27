@@ -1,7 +1,5 @@
-#include <winsock2.h>
 #include <boost/thread/thread.hpp>
-#include <windows.h>
-
+#include "tracker.h"
 #pragma once 
 
 #define CLIENT_PORT 50008
@@ -13,21 +11,5 @@ public:
 	void Send(std::string message);
 };
 
-class SocketServer
-{
-public:
-	SocketServer()
-		:running(false)
-	{
-	}
-	void Start();
-	void Stop();
-	void operator()();
-protected:
-	bool running;
-	boost::thread *loop_thread;
-	SOCKET s;
-	SOCKET s1;
-	struct sockaddr_in source;
 
-};
+

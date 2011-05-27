@@ -18,6 +18,11 @@ void PersonDetectionLoop::Stop()
 	loop_thread->join();
 }
 
+void PersonDetectionLoop::ResetState()
+{
+	person = false;
+}
+
 void PersonDetectionLoop::operator()()
 {
 	SocketClient client;
@@ -49,9 +54,11 @@ void PersonDetectionLoop::operator()()
 						}
 						client.Send(msg);
 						cvReleaseImage(&cam_image);
+						cvReleaseImage(&simage);
 						break;
 					}
 					cvReleaseImage(&cam_image);
+					cvReleaseImage(&simage);
 				}
 				person = true;
 			}

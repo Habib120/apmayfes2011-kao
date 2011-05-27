@@ -6,9 +6,13 @@ using namespace std;
 
 IplImage* MoulinPhotoMaker::GetMoulinPhoto(IplImage *camimage, std::vector<FaceComDetectionResult> results)
 {
-	IplImage* tmp = cvCreateImage(cvSize(camimage->width, camimage->height), camimage->depth, camimage->nChannels);
-	IplImage* ret = cvCreateImage(cvSize(camimage->width, camimage->height), camimage->depth, camimage->nChannels);
-	ImageUtils::adjustBrightnessAndContrast(camimage, tmp, 55, 40);
+	const int CAMSPLITTER_FRAME_HEIGHT = 20;
+	IplImage* ccamimage = cvCreateImage(cvSize(camimage->width, camimage->height - CAMSPLITTER_FRAME_HEIGHT), camimage->depth, camimage->nChannels);
+	cvSetImageROI(camimage, cvRect(0, 0, ccamimage->width, ccamimage->height));
+	cvCopy(camimage, ccamimage);
+	IplImage* tmp = cvCreateImage(cvSize(ccamimage->width, ccamimage->height), camimage->depth, camimage->nChannels);
+	IplImage* ret = cvCreateImage(cvSize(ccamimage->width, ccamimage->height), camimage->depth, camimage->nChannels);
+	ImageUtils::adjustBrightnessAndContrast(ccamimage, tmp, 55, 40);
 	ImageUtils::adjustSaturation(tmp, ret, 0);
 	IplImage* mask = cvLoadImage("mask.png");
 	IplImage* mask_alpha = cvLoadImage("maskA.png");
@@ -34,9 +38,9 @@ IplImage* MoulinPhotoMaker::GetMoulinPhoto(IplImage *camimage, std::vector<FaceC
 		cx += (r.x + r.width) / results.size();
 		cy += (r.y + r.height) / results.size();
 	}
-	if (minx < (camimage->width - maxx))
+	if (minx < (ccamimage->width - maxx))
 	{
-		int candidate_1 = camimage->width - rect.width;
+		int candidate_1 = ccamimage->width - rect.width;
 		int candidate_2 = maxx + margin;
 		rect.x = min(candidate_1, candidate_2);
 	}
@@ -52,6 +56,8 @@ IplImage* MoulinPhotoMaker::GetMoulinPhoto(IplImage *camimage, std::vector<FaceC
 
 	cvReleaseImage(&mask);
 	cvReleaseImage(&mask_alpha);
+	cvReleaseImage(&tmp);
+	cvReleaseImage(&ccamimage);
 
 	return ret;
 }
