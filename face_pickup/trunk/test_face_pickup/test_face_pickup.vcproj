@@ -224,7 +224,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="&#x0D;&#x0A;copy &quot;$(ProjectDir)cppunit_dll.dll&quot; &quot;$(OutDir)\cppunit_dll.dll&quot;"
+				CommandLine="&#x0D;&#x0A;copy &quot;$(ProjectDir)cppunit_dll.dll&quot; &quot;$(OutDir)\cppunit_dll.dll&quot;&#x0D;&#x0A;"
 			/>
 		</Configuration>
 	</Configurations>
