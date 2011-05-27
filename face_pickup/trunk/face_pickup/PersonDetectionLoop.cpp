@@ -5,6 +5,7 @@
 #include <boost/ref.hpp>
 #include <boost/format.hpp>
 #include <boost/lexical_cast.hpp>
+#include <algorithm>
 
 void PersonDetectionLoop::Start()
 {
@@ -44,7 +45,7 @@ void PersonDetectionLoop::operator()()
 						{
 
 							std::cout << "is_male : " << results.at(i).is_male << " confidence : " << results.at(i).con_gender << std::endl;
-							msg += (boost::format(" {%s, %s}") % std::string(results.at(i).is_male ? "male" : "female") % std::string(results.at(i).has_glasses ? "glasses" : "no_glasses")).str();
+							msg += (boost::format(" {%s,%s}") % std::string(results.at(i).is_male ? "male" : "female") % std::string(results.at(i).has_glasses ? "glasses" : "no_glasses")).str();
 						}
 						client.Send(msg);
 						cvReleaseImage(&cam_image);
@@ -61,6 +62,18 @@ void PersonDetectionLoop::operator()()
 			else if (pose.ry > 3.14/8.0)
 			{
 				client.Send("customer_turnleft");
+			}
+			else if (pose.rx > 3.14/8.0)
+			{
+				client.Send("customer_turnup");
+			}
+			else if (pose.rx < -3.14/16.0)
+			{
+				client.Send("customer_turndown");
+			}
+			else if (std::abs(pose.ry) < 3.14/16.0 && (std::abs(pose.rz) < 3.14/16.0 && std::abs(pose.rx) < 3.14/16.0))
+			{
+				client.Send("customer_turnfront");
 			}
 			
 			std::string msg = (boost::format("head_pose||%f %f %f %f %f %f") % pose.x % pose.y % pose.z % pose.rx % pose.ry %pose.rz).str();

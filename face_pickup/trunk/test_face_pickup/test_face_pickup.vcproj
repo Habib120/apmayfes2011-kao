@@ -224,7 +224,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="copy &quot;$(ProjectDir)cppunit_dll.dll&quot; &quot;$(OutDir)\cppunit_dll.dll&quot;&#x0D;&#x0A;copy &quot;$(ProjectDir)face_0000.jpg&quot; &quot;$(OutDir)\face_0000.jpg&quot;&#x0D;&#x0A;copy &quot;$(ProjectDir)featurepoints_gabor.txt&quot; &quot;$(OutDir)\featurepoints_gabor.txt&quot;&#x0D;&#x0A;copy &quot;$(ProjectDir)moulin_photo01.jpg&quot; &quot;$(OutDir)\moulin_photo01.jpg&quot;"
+				CommandLine="&#x0D;&#x0A;copy &quot;$(ProjectDir)cppunit_dll.dll&quot; &quot;$(OutDir)\cppunit_dll.dll&quot;"
 			/>
 		</Configuration>
 	</Configurations>
@@ -317,7 +317,23 @@
 				>
 			</File>
 			<File
+				RelativePath=".\mask.png"
+				>
+			</File>
+			<File
+				RelativePath=".\maskA.png"
+				>
+			</File>
+			<File
 				RelativePath=".\moulin_photo01.jpg"
+				>
+			</File>
+			<File
+				RelativePath=".\moulin_photo02.jpg"
+				>
+			</File>
+			<File
+				RelativePath=".\moulin_photo03.jpg"
 				>
 			</File>
 		</Filter>
