@@ -39,7 +39,9 @@ void RequestHandler::Handle(std::string msg)
 		std::string dirname(MOULIN_PHOTO_SAVE_DIR);
 		std::string dirname_tmp(MOULIN_PHOTO_LATEST_DIR);
 		std::stringstream stream;
-		stream << "photo_" << x->tm_year << x->tm_mon << x->tm_mday << "_" << x->tm_hour << x->tm_min << "_" << x->tm_sec << "_" << rand() << ".jpg";
+		stream << "photo_" << 1900 + x->tm_year << "_" << 1 + x->tm_mon << "_" 
+			<< x->tm_mday << "_" << x->tm_hour << "_" << x->tm_min 
+			<< "_" << x->tm_sec << ".jpg";
 		std::string filename = stream.str();
 		filename = dirname + filename;
 		cvSaveImage(filename.c_str(), photo);

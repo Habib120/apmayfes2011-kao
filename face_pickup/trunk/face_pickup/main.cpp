@@ -38,8 +38,6 @@ using std::string;
 int main ()
 {
 	HeadTracker tracker;
-	tracker.Start();
-
 	PersonDetectionLoop pl(&tracker);
 	FaceComDetectionLoop fl(&tracker);
 	SocketServer server(&tracker, &pl);
@@ -51,9 +49,9 @@ int main ()
 	cvNamedWindow("test");
 	cvWaitKey(0);
 
-	//fl.Stop();
-	//pl.Stop();
-	//tracker.Stop();
-	//cvDestroyAllWindows();
-	//return 0;
+	fl.Stop();
+	pl.Stop();
+	tracker.Stop();
+	cvDestroyAllWindows();
+	return 0;
 }
