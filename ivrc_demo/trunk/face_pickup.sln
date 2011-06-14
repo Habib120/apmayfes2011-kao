@@ -1,0 +1,58 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "face_pickup", "face_pickup\face_pickup.vcproj", "{C8163B93-9B6A-4A80-B581-65903C5CDE6F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4768D9D7-3BE8-4EF8-9A23-8DCE01A5A772}"
+	ProjectSection(SolutionItems) = preProject
+		face_pickup.vsmdi = face_pickup.vsmdi
+		LocalTestRun.testrunconfig = LocalTestRun.testrunconfig
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "test_face_pickup", "test_face_pickup\test_face_pickup.vcproj", "{DD6999A8-BBD0-4AD6-8895-02A5D5C24FAD}"
+	ProjectSection(ProjectDependencies) = postProject
+		{C8163B93-9B6A-4A80-B581-65903C5CDE6F} = {C8163B93-9B6A-4A80-B581-65903C5CDE6F}
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NewFolder1", "NewFolder1", "{D2FDB4BA-0BDF-4352-A74D-C41B20203664}"
+EndProject
+Global
+	GlobalSection(SubversionScc) = preSolution
+		Svn-Managed = True
+		Manager = AnkhSVN - Subversion Support for Visual Studio
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug DLL|Win32 = Debug DLL|Win32
+		Debug|Win32 = Debug|Win32
+		Release DLL|Win32 = Release DLL|Win32
+		Release|Win32 = Release|Win32
+		Test|Win32 = Test|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C8163B93-9B6A-4A80-B581-65903C5CDE6F}.Debug DLL|Win32.ActiveCfg = Debug|Win32
+		{C8163B93-9B6A-4A80-B581-65903C5CDE6F}.Debug DLL|Win32.Build.0 = Debug|Win32
+		{C8163B93-9B6A-4A80-B581-65903C5CDE6F}.Debug|Win32.ActiveCfg = Debug|Win32
+		{C8163B93-9B6A-4A80-B581-65903C5CDE6F}.Debug|Win32.Build.0 = Debug|Win32
+		{C8163B93-9B6A-4A80-B581-65903C5CDE6F}.Release DLL|Win32.ActiveCfg = Release|Win32
+		{C8163B93-9B6A-4A80-B581-65903C5CDE6F}.Release DLL|Win32.Build.0 = Release|Win32
+		{C8163B93-9B6A-4A80-B581-65903C5CDE6F}.Release|Win32.ActiveCfg = Release|Win32
+		{C8163B93-9B6A-4A80-B581-65903C5CDE6F}.Release|Win32.Build.0 = Release|Win32
+		{C8163B93-9B6A-4A80-B581-65903C5CDE6F}.Test|Win32.ActiveCfg = Test|Win32
+		{C8163B93-9B6A-4A80-B581-65903C5CDE6F}.Test|Win32.Build.0 = Test|Win32
+		{DD6999A8-BBD0-4AD6-8895-02A5D5C24FAD}.Debug DLL|Win32.ActiveCfg = Debug|Win32
+		{DD6999A8-BBD0-4AD6-8895-02A5D5C24FAD}.Debug DLL|Win32.Build.0 = Debug|Win32
+		{DD6999A8-BBD0-4AD6-8895-02A5D5C24FAD}.Debug|Win32.ActiveCfg = Debug|Win32
+		{DD6999A8-BBD0-4AD6-8895-02A5D5C24FAD}.Release DLL|Win32.ActiveCfg = Release|Win32
+		{DD6999A8-BBD0-4AD6-8895-02A5D5C24FAD}.Release DLL|Win32.Build.0 = Release|Win32
+		{DD6999A8-BBD0-4AD6-8895-02A5D5C24FAD}.Release|Win32.ActiveCfg = Release|Win32
+		{DD6999A8-BBD0-4AD6-8895-02A5D5C24FAD}.Release|Win32.Build.0 = Release|Win32
+		{DD6999A8-BBD0-4AD6-8895-02A5D5C24FAD}.Test|Win32.ActiveCfg = Test|Win32
+		{DD6999A8-BBD0-4AD6-8895-02A5D5C24FAD}.Test|Win32.Build.0 = Test|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D2FDB4BA-0BDF-4352-A74D-C41B20203664} = {4768D9D7-3BE8-4EF8-9A23-8DCE01A5A772}
+	EndGlobalSection
+EndGlobal
