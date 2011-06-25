@@ -2,7 +2,7 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9.00"
-	Name="test_face_pickup"
+	Name="ivrc_demo_test"
 	ProjectGUID="{DD6999A8-BBD0-4AD6-8895-02A5D5C24FAD}"
 	RootNamespace="test_face_pickup"
 	TargetFrameworkVersion="196613"
