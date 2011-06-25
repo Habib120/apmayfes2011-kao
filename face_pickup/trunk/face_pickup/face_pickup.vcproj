@@ -2,7 +2,7 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9.00"
-	Name="face_pickup"
+	Name="ivrc_demo"
 	ProjectGUID="{C8163B93-9B6A-4A80-B581-65903C5CDE6F}"
 	RootNamespace="face_pickup"
 	Keyword="Win32Proj"

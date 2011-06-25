@@ -33,8 +33,8 @@ void HeadTracker::Start(bool with_dbg)
 	/**
 	 * Start Camera Capture
 	 */
-	cap = cvCreateCameraCapture(0);
-	cframe = cvQueryFrame(cap);
+	//cap = cvCreateCameraCapture(0);
+	//cframe = cvQueryFrame(cap);
 
 	/**
 	 * Start FaceAPI
@@ -51,6 +51,8 @@ void HeadTracker::Start(bool with_dbg)
 	}
     smEngineStart(engine);
 
+	cframe = cvCreateImage(cvSize(640, 480), IPL_DEPTH_8U, 3);
+	cvSetZero(cframe);
 	loop_thread = new boost::thread(boost::ref(*this));
 }
 
@@ -78,8 +80,8 @@ void HeadTracker::operator()()
 			//Get new camera capture frame(Thread safe)
 			boost::mutex::scoped_lock clock(mt_camimage, boost::defer_lock);
 			clock.lock();
-				cframe = cvQueryFrame(cap);
-				face_img = ImageUtils::clipHeadImage(cframe, *cpose);
+				//cframe = cvQueryFrame(cap);
+				face_img = cvCreateImage(cvSize(100, 100), IPL_DEPTH_8U, 3);
 			clock.unlock();
 			
 			//Getting current head data(Thread safe)
@@ -98,11 +100,6 @@ void HeadTracker::operator()()
 				data->pose = *cpose;
 			}
 			hlock.unlock();
-
-			if (false)
-			{
-				cvShowImage("Capture", face_img);
-			}
 		}
 		else 
 		{
@@ -166,6 +163,6 @@ void HeadTracker::Stop()
 	smAPIQuit();
 	//Quit camera capture
 	//なぜかこうしないとキャプチャの解放ができない。
-	cap = cvCreateCameraCapture(0);
-	cvReleaseCapture(&cap);
+	//cap = cvCreateCameraCapture(0);
+	//cvReleaseCapture(&cap);
 }
