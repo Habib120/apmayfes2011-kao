@@ -16,9 +16,9 @@ void STDCALL recieveHeadPose(void *,smEngineHeadPoseData head_pose, smCameraVide
 	boost::mutex::scoped_lock lk(mt_pose);
     smImageInfo video_frame_image_info;
     smImageGetInfo(video_frame.image_handle, &video_frame_image_info);     
-	pose.x = head_pose.head_pos.x;
-	pose.y = head_pose.head_pos.y;
-	pose.z = head_pose.head_pos.z;
+	pose.x = (head_pose.right_eye_pos.x + head_pose.left_eye_pos.x);
+	pose.y = (head_pose.right_eye_pos.y + head_pose.left_eye_pos.y);
+	pose.z = (head_pose.right_eye_pos.z + head_pose.left_eye_pos.z);
 	pose.rx = head_pose.head_rot.x_rads;
 	pose.ry = head_pose.head_rot.y_rads;
 	pose.rz = head_pose.head_rot.z_rads;
@@ -37,8 +37,7 @@ void HeadTracker::Start(bool with_dbg)
 	cframe = cvQueryFrame(cap);
 
 	/**
-	 * Start FaceAPI
-	 */
+	 * Start FaceAPI^--^@;*/
 	smAPIInit();
 	smCameraRegisterType(SM_API_CAMERA_TYPE_WDM);	//カメラタイプの登録（必須）
 	
