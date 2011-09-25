@@ -1,0 +1,173 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="ソース ファイル">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="ソース ファイル\structure">
+      <UniqueIdentifier>{840e624d-9e26-4ebc-b1da-bf1ab37fd714}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\extractors">
+      <UniqueIdentifier>{1c2a5f82-d2e0-4c22-a825-991f65a98394}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\util">
+      <UniqueIdentifier>{bf57abd9-8435-40b8-8ea7-22b9aeeac247}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\detectors">
+      <UniqueIdentifier>{b893e503-fd63-4641-9343-62496cd6b40e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\tracker">
+      <UniqueIdentifier>{1a1aa5f2-1f1d-4daf-aff0-3a2eb22002cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\detection_thread">
+      <UniqueIdentifier>{d73e5062-de3f-4cb4-9ff0-d7486a0be71f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\network">
+      <UniqueIdentifier>{2ad05be0-c2f3-463d-b2ea-3182e5479860}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\photo">
+      <UniqueIdentifier>{675580c8-f1b5-4665-8f8b-0eda3cf78101}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="リソース ファイル">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+    <Filter Include="test">
+      <UniqueIdentifier>{94f36e61-4b45-4006-a1ef-f0b3182eb962}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ml">
+      <UniqueIdentifier>{d50a8ffc-5ab7-43da-a8ba-eea60736c101}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="images">
+      <UniqueIdentifier>{9bb70d2f-b5a5-4817-ae5e-5a2689393b91}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="HeadData.cpp">
+      <Filter>ソース ファイル\structure</Filter>
+    </ClCompile>
+    <ClCompile Include="HeadPose.cpp">
+      <Filter>ソース ファイル\structure</Filter>
+    </ClCompile>
+    <ClCompile Include="DummyExtractor.cpp">
+      <Filter>ソース ファイル\extractors</Filter>
+    </ClCompile>
+    <ClCompile Include="Extractor.cpp">
+      <Filter>ソース ファイル\extractors</Filter>
+    </ClCompile>
+    <ClCompile Include="ExtractorSchema.cpp">
+      <Filter>ソース ファイル\extractors</Filter>
+    </ClCompile>
+    <ClCompile Include="GaborExtractor.cpp">
+      <Filter>ソース ファイル\extractors</Filter>
+    </ClCompile>
+    <ClCompile Include="CvGabor.cpp">
+      <Filter>ソース ファイル\util</Filter>
+    </ClCompile>
+    <ClCompile Include="FileUtils.cpp">
+      <Filter>ソース ファイル\util</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageUtils.cpp">
+      <Filter>ソース ファイル\util</Filter>
+    </ClCompile>
+    <ClCompile Include="FaceComDetector.cpp">
+      <Filter>ソース ファイル\detectors</Filter>
+    </ClCompile>
+    <ClCompile Include="SmileDetector.cpp">
+      <Filter>ソース ファイル\detectors</Filter>
+    </ClCompile>
+    <ClCompile Include="HeadTracker.cpp">
+      <Filter>ソース ファイル\tracker</Filter>
+    </ClCompile>
+    <ClCompile Include="FaceComDetectionLoop.cpp">
+      <Filter>ソース ファイル\detection_thread</Filter>
+    </ClCompile>
+    <ClCompile Include="PersonDetectionLoop.cpp">
+      <Filter>ソース ファイル\detection_thread</Filter>
+    </ClCompile>
+    <ClCompile Include="SmileDetectionLoop.cpp">
+      <Filter>ソース ファイル\detection_thread</Filter>
+    </ClCompile>
+    <ClCompile Include="RequestHandler.cpp">
+      <Filter>ソース ファイル\network</Filter>
+    </ClCompile>
+    <ClCompile Include="SocketClient.cpp">
+      <Filter>ソース ファイル\network</Filter>
+    </ClCompile>
+    <ClCompile Include="SocketServer.cpp">
+      <Filter>ソース ファイル\network</Filter>
+    </ClCompile>
+    <ClCompile Include="MoulinPhotoMaker.cpp">
+      <Filter>ソース ファイル\photo</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="connection.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="cvgabor.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="detection_thread.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="detectors.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="extractors.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="network.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="photo.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="structure.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="tracker.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="util.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="moulin_photo02.jpg">
+      <Filter>リソース ファイル</Filter>
+    </None>
+    <None Include="moulin_photo03.jpg">
+      <Filter>リソース ファイル</Filter>
+    </None>
+    <None Include="featurepoints.txt">
+      <Filter>test</Filter>
+    </None>
+    <None Include="rtrees.xml">
+      <Filter>ml</Filter>
+    </None>
+    <None Include="mask.png">
+      <Filter>images</Filter>
+    </None>
+    <None Include="maskA.png">
+      <Filter>images</Filter>
+    </None>
+    <None Include="moulin_photo01.jpg">
+      <Filter>images</Filter>
+    </None>
+    <None Include="Readme.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="face_0000.jpg">
+      <Filter>test</Filter>
+    </CustomBuild>
+  </ItemGroup>
+</Project>
