@@ -1,0 +1,183 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Test|Win32">
+      <Configuration>Test</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{C8163B93-9B6A-4A80-B581-65903C5CDE6F}</ProjectGuid>
+    <RootNamespace>face_pickup</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectName>ivrc_honban</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Test|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Test|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.40219.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Configuration)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Test|Win32'">$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Test|Win32'">$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <CustomBuildStep>
+      <Command>
+      </Command>
+    </CustomBuildStep>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>C:\Program Files\SeeingMachines\FaceTrackingAPI_NC 3.2\API\include;C:\Program Files\boost\boost_1_46_1\;C:\OpenCV2.1\include\opencv;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalOptions>ws2_32.lib
+ %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>cv210d.lib;cvaux210d.lib;cxcore210d.lib;cxts210.lib;highgui210d.lib;ml210d.lib;opencv_ffmpeg210d.lib;smft32.lib;smftcpp.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Program Files\boost\boost_1_46_1\lib;C:\Program Files\SeeingMachines\FaceTrackingAPI_NC 3.2\API\bin;C:\OpenCV2.1\build\lib\Release;C:\Program Files\SeeingMachines\FaceTrackingAPI_NC 3.2\Wrappers\C++\lib;C:\OpenCV2.1\build\lib\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <PostBuildEvent>
+      <Message>ビルド後のイベントを実行しています！！</Message>
+      <Command>copy "$(ProjectDir)face_0000.jpg" "$(OutDir)face_0000.jpg"
+copy "$(ProjectDir)rtrees.xml" "$(OutDir)rtrees.xml"
+copy "$(ProjectDir)moulin_photo01.jpg" "$(OutDir)"
+</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Test|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Program Files\SeeingMachines\FaceTrackingAPI_NC 3.2\API\include;C:\Program Files\boost\boost_1_46_1\;C:\OpenCV2.1\include\opencv;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <Lib>
+      <AdditionalLibraryDirectories>C:\Program Files\boost\boost_1_46_1\lib;C:\Program Files\SeeingMachines\FaceTrackingAPI_NC 3.2\API\bin;C:\OpenCV2.1\build\lib\Release;C:\Program Files\SeeingMachines\FaceTrackingAPI_NC 3.2\Wrappers\C++\lib;C:\OpenCV2.1\build\lib\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+    </Lib>
+    <PostBuildEvent>
+      <Command>copy "$(ProjectDir)face_0000.jpg" "$(OutDir)face_0000.jpg"
+copy "$(ProjectDir)moulin_photo01.jpg" "$(OutDir)"
+copy "$(ProjectDir)mask.png" "$(OutDir)"
+copy "$(ProjectDir)maskA.png" "$(OutDir)"
+</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="HeadData.cpp" />
+    <ClCompile Include="HeadPose.cpp" />
+    <ClCompile Include="DummyExtractor.cpp" />
+    <ClCompile Include="Extractor.cpp" />
+    <ClCompile Include="ExtractorSchema.cpp" />
+    <ClCompile Include="GaborExtractor.cpp" />
+    <ClCompile Include="CvGabor.cpp" />
+    <ClCompile Include="FileUtils.cpp" />
+    <ClCompile Include="ImageUtils.cpp" />
+    <ClCompile Include="FaceComDetector.cpp" />
+    <ClCompile Include="SmileDetector.cpp" />
+    <ClCompile Include="HeadTracker.cpp" />
+    <ClCompile Include="FaceComDetectionLoop.cpp" />
+    <ClCompile Include="PersonDetectionLoop.cpp" />
+    <ClCompile Include="SmileDetectionLoop.cpp" />
+    <ClCompile Include="RequestHandler.cpp" />
+    <ClCompile Include="SocketClient.cpp" />
+    <ClCompile Include="SocketServer.cpp" />
+    <ClCompile Include="MoulinPhotoMaker.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="connection.h" />
+    <ClInclude Include="cvgabor.h" />
+    <ClInclude Include="detection_thread.h" />
+    <ClInclude Include="detectors.h" />
+    <ClInclude Include="extractors.h" />
+    <ClInclude Include="network.h" />
+    <ClInclude Include="photo.h" />
+    <ClInclude Include="structure.h" />
+    <ClInclude Include="tracker.h" />
+    <ClInclude Include="util.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="moulin_photo02.jpg" />
+    <None Include="moulin_photo03.jpg" />
+    <CustomBuild Include="face_0000.jpg">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">copy $(OutDir)hogehoge.txt $(ProjDir)hogehoge
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(Outputs)</Outputs>
+    </CustomBuild>
+    <None Include="featurepoints.txt" />
+    <None Include="rtrees.xml" />
+    <None Include="mask.png" />
+    <None Include="maskA.png" />
+    <None Include="moulin_photo01.jpg" />
+    <None Include="Readme.txt" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
