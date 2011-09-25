@@ -45,7 +45,6 @@ int main ()
 	cvNamedWindow("test");
 	cvWaitKey(0);
 
-	fl.Stop();
 	pl.Stop();
 	tracker.Stop();
 	cvDestroyAllWindows();

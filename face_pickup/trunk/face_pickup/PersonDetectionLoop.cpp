@@ -20,7 +20,6 @@ void PersonDetectionLoop::Stop()
 
 void PersonDetectionLoop::ResetState()
 {
-	person = false;
 }
 
 void PersonDetectionLoop::operator()()
