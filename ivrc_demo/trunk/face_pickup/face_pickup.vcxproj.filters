@@ -8,14 +8,8 @@
     <Filter Include="ソース ファイル\structure">
       <UniqueIdentifier>{840e624d-9e26-4ebc-b1da-bf1ab37fd714}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\extractors">
-      <UniqueIdentifier>{1c2a5f82-d2e0-4c22-a825-991f65a98394}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ソース ファイル\util">
       <UniqueIdentifier>{bf57abd9-8435-40b8-8ea7-22b9aeeac247}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\detectors">
-      <UniqueIdentifier>{b893e503-fd63-4641-9343-62496cd6b40e}</UniqueIdentifier>
     </Filter>
     <Filter Include="ソース ファイル\tracker">
       <UniqueIdentifier>{1a1aa5f2-1f1d-4daf-aff0-3a2eb22002cb}</UniqueIdentifier>
@@ -25,9 +19,6 @@
     </Filter>
     <Filter Include="ソース ファイル\network">
       <UniqueIdentifier>{2ad05be0-c2f3-463d-b2ea-3182e5479860}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\photo">
-      <UniqueIdentifier>{675580c8-f1b5-4665-8f8b-0eda3cf78101}</UniqueIdentifier>
     </Filter>
     <Filter Include="ヘッダー ファイル">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
@@ -57,43 +48,16 @@
     <ClCompile Include="HeadPose.cpp">
       <Filter>ソース ファイル\structure</Filter>
     </ClCompile>
-    <ClCompile Include="DummyExtractor.cpp">
-      <Filter>ソース ファイル\extractors</Filter>
-    </ClCompile>
-    <ClCompile Include="Extractor.cpp">
-      <Filter>ソース ファイル\extractors</Filter>
-    </ClCompile>
-    <ClCompile Include="ExtractorSchema.cpp">
-      <Filter>ソース ファイル\extractors</Filter>
-    </ClCompile>
-    <ClCompile Include="GaborExtractor.cpp">
-      <Filter>ソース ファイル\extractors</Filter>
-    </ClCompile>
-    <ClCompile Include="CvGabor.cpp">
-      <Filter>ソース ファイル\util</Filter>
-    </ClCompile>
     <ClCompile Include="FileUtils.cpp">
       <Filter>ソース ファイル\util</Filter>
     </ClCompile>
     <ClCompile Include="ImageUtils.cpp">
       <Filter>ソース ファイル\util</Filter>
     </ClCompile>
-    <ClCompile Include="FaceComDetector.cpp">
-      <Filter>ソース ファイル\detectors</Filter>
-    </ClCompile>
-    <ClCompile Include="SmileDetector.cpp">
-      <Filter>ソース ファイル\detectors</Filter>
-    </ClCompile>
     <ClCompile Include="HeadTracker.cpp">
       <Filter>ソース ファイル\tracker</Filter>
     </ClCompile>
-    <ClCompile Include="FaceComDetectionLoop.cpp">
-      <Filter>ソース ファイル\detection_thread</Filter>
-    </ClCompile>
     <ClCompile Include="PersonDetectionLoop.cpp">
-      <Filter>ソース ファイル\detection_thread</Filter>
-    </ClCompile>
-    <ClCompile Include="SmileDetectionLoop.cpp">
       <Filter>ソース ファイル\detection_thread</Filter>
     </ClCompile>
     <ClCompile Include="RequestHandler.cpp">
@@ -105,30 +69,30 @@
     <ClCompile Include="SocketServer.cpp">
       <Filter>ソース ファイル\network</Filter>
     </ClCompile>
-    <ClCompile Include="MoulinPhotoMaker.cpp">
-      <Filter>ソース ファイル\photo</Filter>
+    <ClCompile Include="CLEyeCameraCapture.cpp">
+      <Filter>ソース ファイル\detection_thread</Filter>
+    </ClCompile>
+    <ClCompile Include="InfraredPersonDetectionLoop.cpp">
+      <Filter>ソース ファイル\detection_thread</Filter>
+    </ClCompile>
+    <ClCompile Include="SerialAdapter.cpp">
+      <Filter>ソース ファイル\util</Filter>
+    </ClCompile>
+    <ClCompile Include="BookObserver.cpp">
+      <Filter>ソース ファイル\detection_thread</Filter>
+    </ClCompile>
+    <ClCompile Include="getviewpoint.cpp">
+      <Filter>ソース ファイル\detection_thread</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="connection.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="cvgabor.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="detection_thread.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="detectors.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="extractors.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="network.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="photo.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="structure.h">
@@ -138,6 +102,12 @@
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="util.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="getviewpoint.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>

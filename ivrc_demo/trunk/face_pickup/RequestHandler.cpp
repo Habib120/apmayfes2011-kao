@@ -1,6 +1,5 @@
 #include "network.h"
 #include "connection.h"
-#include "photo.h"
 #include "cv.h"
 #include <boost/format.hpp>
 #include <ctime>
@@ -27,39 +26,7 @@ void RequestHandler::Handle(std::string msg)
 	}
 	std::cout << "header : " << header << " body : " << body << std::endl;
 
-	if (header == "take_photo")
-	{
-		IplImage* camimage = this->tracker->GetCurrentCamImage();
-		FaceComDetector detector;
-		std::vector<FaceComDetectionResult> results = detector.Detect(camimage);
-		IplImage* photo = MoulinPhotoMaker::GetMoulinPhoto(camimage, results);
-
-		//Šç‰æ‘œƒf[ƒ^‚Ì•Û‘¶
-		time_t t = time(0);
-		tm *x = localtime(&t);
-		std::string dirname(MOULIN_PHOTO_SAVE_DIR);
-		std::string dirname_tmp(MOULIN_PHOTO_LATEST_DIR);
-		std::stringstream stream;
-		stream << "photo_" << 1900 + x->tm_year << "_" << 1 + x->tm_mon << "_" 
-			<< x->tm_mday << "_" << x->tm_hour << "_" << x->tm_min 
-			<< "_" << x->tm_sec << ".jpg";
-		std::string filename = stream.str();
-		filename = dirname + filename;
-		cvSaveImage(filename.c_str(), photo);
-
-		int latestnum = latestcount % 5;
-		std::stringstream stream_tmp;
-		stream_tmp << "photo_latest_" << latestnum << ".jpg";
-		latestcount++;
-		std::string filename_tmp = stream_tmp.str();
-		filename_tmp = dirname_tmp + filename_tmp;
-		cvSaveImage(filename_tmp.c_str(), photo);
-
-		cvReleaseImage(&camimage);
-		cvReleaseImage(&photo);
-	}
-
-	else if (header == "reset_game")
+	if (header == "reset_game")
 	{
 
 	}

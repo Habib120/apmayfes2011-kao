@@ -2,7 +2,6 @@
 
 //network.hを一番初めにインクルードすること
 #include "network.h"
-#include "detectors.h"
 #include <stdio.h>
 #include <cv.h>
 #include <highgui.h>
@@ -13,13 +12,9 @@
 #include <cmath>
 #include <time.h>
 #include <ml.h>
-#include "cvgabor.h"
 #include "structure.h"
-#include "extractors.h"
-#include "detectors.h"
 #include "util.h"
 #include "tracker.h"
-#include "photo.h"
 #include "detection_thread.h"
 #include "connection.h"
 
@@ -38,18 +33,21 @@ using std::string;
 int main ()
 {
 	FileUtils::DeleteAllTmpImages();
-	HeadTracker tracker;
-	PersonDetectionLoop pl(&tracker);
-	SocketServer server(&tracker, &pl);
-	tracker.Start();
-	pl.Start();
-	server.Start();
+	//HeadTracker tracker;
+	//InfraredPersonDetectionLoop ipl;
+	//PersonDetectionLoop pl(&tracker);
+	//SocketServer server(&tracker, &pl);
+	BookObserver observer;
+	//tracker.Start(true);
+	//pl.Start();
+	//server.Start();
+	observer.Start();
 
 	cvNamedWindow("test");
 	cvWaitKey(0);
 
-	pl.Stop();
-	tracker.Stop();
+	//pl.Stop();
+	//tracker.Stop();
 	cvDestroyAllWindows();
 	return 0;
 }
