@@ -29,12 +29,7 @@ void HeadTracker::Start(bool with_dbg)
 {
 	this->with_dbg = with_dbg;
 
-	
-	/**
-	 * Start Camera Capture
-	 */
-	cap = cvCreateCameraCapture(0);
-	cframe = cvQueryFrame(cap);
+
 
 	/**
 	 * Start FaceAPI^--^@;*/
@@ -49,6 +44,13 @@ void HeadTracker::Start(bool with_dbg)
 		smVideoDisplaySetFlags(video_display_handle,SM_API_VIDEO_DISPLAY_HEAD_MESH);
 	}
     smEngineStart(engine);
+
+		
+	/**
+	 * Start Camera Capture
+	 */
+	cap = cvCreateCameraCapture(0);
+	cframe = cvQueryFrame(cap);
 
 	loop_thread = new boost::thread(boost::ref(*this));
 }

@@ -1,7 +1,6 @@
 #include "network.h"
 #include "tracker.h"
 #include "detection_thread.h"
-#include "extractors.h"
 #include <boost/ref.hpp>
 #include <boost/format.hpp>
 #include <boost/lexical_cast.hpp>
