@@ -1,6 +1,6 @@
 #include "detection_thread.h"
 #include <boost/format.hpp>
-#include <boost/cast.hpp>
+#include <boost/lexical_cast.hpp>
 #include <boost/tokenizer.hpp>
 #include <boost/foreach.hpp>
 #include <string>
@@ -9,11 +9,16 @@
 
 BookObserver::BookObserver()
 {
-	//serial = new SerialAdapter();
+	serial = new SerialAdapter();
+	if (!serial->Init())
+	{
+		std::cerr << "Failed to serial port" << std::endl;
+	}
 }
 
 void BookObserver::Start()
 {
+	stop = false;
 	loop_thread = new boost::thread(boost::ref(*this));
 }
 
@@ -38,19 +43,20 @@ std::vector<int> BookObserver::getOpenPages(std::vector<int> sensor_values)
 
 void BookObserver::processReceivedText(std::string rcv, SocketClient *client)
 {
-	/**
 	boost::char_separator<char> sep(" ");
 	boost::tokenizer<boost::char_separator<char>> tokenizer(rcv, sep);
 	std::vector<int> sensor_values;
 
 	BOOST_FOREACH(string t, tokenizer)
 	{
+		//空白，改行は無視する．
+		if (t == "" || t == "\r\n")
+			continue;
 		try {
-			int v = boost::numeric_cast<int>(t);
+			int v = boost::lexical_cast<int>(t);
 			sensor_values.push_back(v);
-		}
-		catch (boost::bad_numeric_cast e){
-			std::cerr << "Invalid sensor value : " << t << endl;
+		} catch (boost::bad_lexical_cast e) {
+			std::cerr << "Invalid sensor value '" << t  << "'" << endl;
 		}
 	}
 	//8個値が返ってくれば正常
@@ -67,12 +73,11 @@ void BookObserver::processReceivedText(std::string rcv, SocketClient *client)
 		std::cout << i << ", ";
 	}
 	std::cout << endl;
-	*/
+	
 }
 
 void BookObserver::operator()()
 {
-	/*
 	string rcv;
 	serial->Start();
 	SocketClient client;
@@ -83,5 +88,4 @@ void BookObserver::operator()()
 			processReceivedText(rcv, &client);
 		}
 	}
-	*/
 }
