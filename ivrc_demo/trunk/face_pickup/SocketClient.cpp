@@ -15,7 +15,7 @@ void SocketClient::Send(std::string message)
 	 char *deststr;
 	 unsigned int **addrptr;
 
-	 deststr = "127.0.0.1";
+	 deststr = "10.0.0.2";
 
 	 if (WSAStartup(MAKEWORD(2,0), &wsaData) != 0) {
 		 printf("WSAStartup failed\n");

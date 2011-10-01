@@ -1,7 +1,7 @@
 
 #include "util.h"
 
-#define COM_NAME "COM3"
+#define COM_NAME "COM6"
 #define MAX_QUE 4096
 #define DEF_WAIT (1000/60)
 

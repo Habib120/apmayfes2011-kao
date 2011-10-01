@@ -33,8 +33,8 @@ int main ()
 
 	InfraredPersonDetectionLoop ipl;
 	BookObserver observer;
-	ipl.Start();
-	//observer.Start();
+	//ipl.Start();
+	observer.Start();
 
 	cvNamedWindow("test");
 	cvWaitKey(0);
