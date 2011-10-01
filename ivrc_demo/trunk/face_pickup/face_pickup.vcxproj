@@ -55,7 +55,9 @@
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Test|Win32'">$(SolutionDir)$(Configuration)\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Test|Win32'">$(Configuration)\</IntDir>
-    <ExecutablePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\Program Files\Code Laboratories\CL-Eye Platform SDK\Bin;C:\OpenCV2.3\build\x86\vc10\bin;C:\OpenCV2.3\build\bin;$(ExecutablePath)</ExecutablePath>
+    <ExecutablePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\OpenCV2.3\build\x86\vc10\bin;C:\Program Files (x86)\Code Laboratories\CL-Eye Platform SDK\Bin;C:\OpenCV2.3\build\bin;$(ExecutablePath)</ExecutablePath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\Program Files (x86)\Code Laboratories\CL-Eye Platform SDK\Include;$(IncludePath)</IncludePath>
+    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\Program Files (x86)\boost\boost_1_46_1\lib;C:\Program Files (x86)\Code Laboratories\CL-Eye Platform SDK\Lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <CustomBuildStep>
@@ -64,7 +66,7 @@
     </CustomBuildStep>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>C:\Program Files\SeeingMachines\FaceTrackingAPI_NC 3.2\API\include;C:\Program Files\boost\boost_1_46_1\;C:\Program Files\Code Laboratories\CL-Eye Platform SDK\Include;C:\OpenCV2.3\build\include\opencv;C:\OpenCV2.3\build\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Program Files\SeeingMachines\FaceTrackingAPI_NC 3.2\API\include;C:\Program Files (x86)\boost\boost_1_46_1;C:\Program Files\boost\boost_1_46_1\;C:\Program Files\Code Laboratories\CL-Eye Platform SDK\Include;C:\OpenCV2.3\build\include\opencv;C:\OpenCV2.3\build\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -77,7 +79,7 @@
     <Link>
       <AdditionalOptions>ws2_32.lib
  %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>opencv_core230d.lib;opencv_imgproc230d.lib;opencv_highgui230d.lib;smft32.lib;smftcpp.lib;ws2_32.lib;CLEyeMulticam.lib</AdditionalDependencies>
+      <AdditionalDependencies>opencv_core230d.lib;opencv_imgproc230d.lib;opencv_highgui230d.lib;ws2_32.lib;CLEyeMulticam.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>C:\Program Files\boost\boost_1_46_1\lib;C:\Program Files\SeeingMachines\FaceTrackingAPI_NC 3.2\API\bin;C:\Program Files\SeeingMachines\FaceTrackingAPI_NC 3.2\Wrappers\C++\lib;C:\Program Files\Code Laboratories\CL-Eye Platform SDK\Lib;C:\OpenCV2.3\build\x86\vc10\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
@@ -137,21 +139,16 @@ copy "$(ProjectDir)maskA.png" "$(OutDir)"
     <ClCompile Include="HeadPose.cpp" />
     <ClCompile Include="FileUtils.cpp" />
     <ClCompile Include="ImageUtils.cpp" />
-    <ClCompile Include="HeadTracker.cpp" />
     <ClCompile Include="PersonDetectionLoop.cpp" />
-    <ClCompile Include="RequestHandler.cpp" />
     <ClCompile Include="SerialAdapter.cpp" />
     <ClCompile Include="SocketClient.cpp" />
-    <ClCompile Include="SocketServer.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="connection.h" />
     <ClInclude Include="detection_thread.h" />
     <ClInclude Include="getviewpoint.h" />
     <ClInclude Include="network.h" />
     <ClInclude Include="structure.h" />
     <ClInclude Include="targetver.h" />
-    <ClInclude Include="tracker.h" />
     <ClInclude Include="util.h" />
   </ItemGroup>
   <ItemGroup>

@@ -1,5 +1,4 @@
 #include "network.h"
-#include "tracker.h"
 #include "detection_thread.h"
 #include <boost/ref.hpp>
 #include <boost/format.hpp>
@@ -24,7 +23,7 @@ void InfraredPersonDetectionLoop::operator()()
 		coord[2] = cam_coord[2];
 		std::string msg = (boost::format("head_pose||%f %f %f %f %f %f") % coord[0] % coord[1] % coord[2] % 0 % 0 % 0).str();
 		cout << msg << endl;
-		//client.Send(msg);
+		client.Send(msg);
 		ReleaseMutex(mutex);
 	}
 }
@@ -61,7 +60,7 @@ void InfraredPersonDetectionLoop::Start()
 						guid.Data4[3], guid.Data4[4], guid.Data4[5],
 						guid.Data4[6], guid.Data4[7]);
 		sprintf(windowName, "Camera Window %d", i+1);
-		cam[i] = new CLEyeCameraCapture(windowName, guid, CLEYE_MONO_PROCESSED, CLEYE_VGA, 60);
+		cam[i] = new CLEyeCameraCapture(windowName, guid, CLEYE_MONO_PROCESSED, CLEYE_QVGA, 60);
 		printf("Starting capture on camera %d\n", i+1);
 		cam[i]->cam_num = i;
 		cam[i]->StartCapture();

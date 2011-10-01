@@ -1,8 +1,10 @@
 #include "detection_thread.h"
 #include <boost/format.hpp>
 #include <boost/lexical_cast.hpp>
+#include <boost/cast.hpp>
 #include <boost/tokenizer.hpp>
 #include <boost/foreach.hpp>
+#include <boost/algorithm/string.hpp>
 #include <string>
 
 #define PAGE_THRESHOLD 506
@@ -67,13 +69,18 @@ void BookObserver::processReceivedText(std::string rcv, SocketClient *client)
 	}
 
 	std::vector<int> open_pages = getOpenPages(sensor_values);
-	std::cout << "open_pages : ";
+	string msg = "book_page||";
 	BOOST_FOREACH(int& i, open_pages)
 	{
-		std::cout << i << ", ";
+		try {
+			msg = msg + boost::lexical_cast<std::string>(i+1) + " ";
+		} catch (boost::bad_lexical_cast e) {
+			std::cerr << "Invalid sensor value '" << i  << "'" << endl;
+		}
 	}
-	std::cout << endl;
-	
+	boost::trim(msg);
+	std::cout << msg << endl;
+	client->Send(msg);
 }
 
 void BookObserver::operator()()
