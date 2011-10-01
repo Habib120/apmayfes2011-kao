@@ -1,5 +1,5 @@
 #pragma once 
-#include <C:\Program Files (x86)\boost\boost_1_46_1\boost\thread/thread.hpp>
+#include <boost\thread/thread.hpp>
 
 
 #define CLIENT_PORT 50008
