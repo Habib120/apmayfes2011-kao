@@ -5,8 +5,8 @@
 #include "network.h"
 #include <windows.h>
 #include "structure.h"
-#include <C:\Program Files (x86)\boost\boost_1_46_1\boost\thread/thread.hpp>
-#include <C:\Program Files (x86)\boost\boost_1_46_1\boost\thread/mutex.hpp>
+#include <boost\thread/thread.hpp>
+#include <boost\thread/mutex.hpp>
 
 #include "targetver.h"
 
