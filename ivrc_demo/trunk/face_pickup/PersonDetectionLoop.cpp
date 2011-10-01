@@ -1,11 +1,10 @@
 #include "network.h"
-#include "tracker.h"
 #include "detection_thread.h"
 #include <boost/ref.hpp>
 #include <boost/format.hpp>
 #include <boost/lexical_cast.hpp>
 #include <algorithm>
-
+/*
 void PersonDetectionLoop::Start()
 {
 	loop_thread = new boost::thread(boost::ref(*this));
@@ -35,3 +34,4 @@ void PersonDetectionLoop::operator()()
 		}
 	}
 }
+*/

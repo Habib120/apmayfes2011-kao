@@ -5,9 +5,8 @@
 #include "network.h"
 #include <windows.h>
 #include "structure.h"
-#include "tracker.h"
-#include <boost/thread/thread.hpp>
-#include <boost/thread/mutex.hpp>
+#include <C:\Program Files (x86)\boost\boost_1_46_1\boost\thread/thread.hpp>
+#include <C:\Program Files (x86)\boost\boost_1_46_1\boost\thread/mutex.hpp>
 
 #include "targetver.h"
 
@@ -16,6 +15,7 @@
 #include <math.h>
 #include <iostream>
 #include <vector>
+#include<deque>
 
 #include "CLEyeMulticam.h"
 
@@ -30,8 +30,9 @@
 using std::cout;
 using std::endl;
 using std::vector;
+using std::deque;
 
-
+/*
 class PersonDetectionLoop
 {
 public :
@@ -50,7 +51,7 @@ protected :
 	double person_confidence;
 	static const int RUN_AVG_NUM = 70;
 };
-
+*/
 class CLEyeCameraCapture
 {
 protected:
@@ -71,6 +72,11 @@ public:
 	int cam_num;
 	cv::Mat CaptureMat;
 	cv::Point2d Point;
+	cv::Point2d Point_out;
+	cv::Point2d Point_ave;
+	double var_tmp;
+	deque<cv::Point2d> Point_buf;
+	deque<cv::Point2d> Point_buf2;
 };
 
 class InfraredPersonDetectionLoop

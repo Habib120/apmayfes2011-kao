@@ -11,9 +11,6 @@
     <Filter Include="ソース ファイル\util">
       <UniqueIdentifier>{bf57abd9-8435-40b8-8ea7-22b9aeeac247}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\tracker">
-      <UniqueIdentifier>{1a1aa5f2-1f1d-4daf-aff0-3a2eb22002cb}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ソース ファイル\detection_thread">
       <UniqueIdentifier>{d73e5062-de3f-4cb4-9ff0-d7486a0be71f}</UniqueIdentifier>
     </Filter>
@@ -54,19 +51,10 @@
     <ClCompile Include="ImageUtils.cpp">
       <Filter>ソース ファイル\util</Filter>
     </ClCompile>
-    <ClCompile Include="HeadTracker.cpp">
-      <Filter>ソース ファイル\tracker</Filter>
-    </ClCompile>
     <ClCompile Include="PersonDetectionLoop.cpp">
       <Filter>ソース ファイル\detection_thread</Filter>
     </ClCompile>
-    <ClCompile Include="RequestHandler.cpp">
-      <Filter>ソース ファイル\network</Filter>
-    </ClCompile>
     <ClCompile Include="SocketClient.cpp">
-      <Filter>ソース ファイル\network</Filter>
-    </ClCompile>
-    <ClCompile Include="SocketServer.cpp">
       <Filter>ソース ファイル\network</Filter>
     </ClCompile>
     <ClCompile Include="CLEyeCameraCapture.cpp">
@@ -86,9 +74,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="connection.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="detection_thread.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
@@ -96,9 +81,6 @@
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="structure.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="tracker.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="util.h">
