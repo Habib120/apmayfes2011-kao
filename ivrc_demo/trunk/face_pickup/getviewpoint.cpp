@@ -15,7 +15,7 @@
 
 //#define DEBUG
 
-#define BLOCK 15
+#define BLOCK 55
 #define MARK_THRESH -100
 
 //using namespace cv;
@@ -51,7 +51,7 @@ vector<cv::Point2d> getviewpoint(cv::Mat gray_img){
 #ifdef DEBUG
 		if(count < 50 || count > 300) continue;
 #else
-		if(count < 7 || count > 25) continue;  //9/25•ÏXyada
+		if(count < 30 || count > 100) continue;  //9/25•ÏXyada
 #endif
 
 		cv::Moments mom = cv::moments(contours[i]);
