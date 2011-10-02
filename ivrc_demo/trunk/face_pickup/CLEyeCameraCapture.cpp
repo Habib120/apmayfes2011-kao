@@ -116,20 +116,22 @@ void CLEyeCameraCapture::Run()
 				Point = getviewpointz(CaptureMat);
 			}
 			
-			if ( Point != cv::Point2d(-1,-1)) {
-				Point_out = Point;
-			}
+			//10/1デバッグ用//
 			/*
+			if ( Point.x >0 && Point.x <500) {
+				Point_out = Point;
+			}*/
+			
 			//9/30変更//
 			//出力制御部分
-			if ( Point != cv::Point2d(-1,-1)) {
+			if ( Point.x > 0 && Point.x < 640/*Point != cv::Point2d(-1,-1)*/) {
 				Point_buf.push_back(Point);
 				if( Point_buf.size() < BUFSIZE){ //開始からBUFSIZEフレームに達するまでは入力をそのまま出力
 					Point_out = Point;
 				}else{
 					Point_buf.pop_front();
 					//入力が１フレーム前の出力と20ピクセル四方以内なら入力をそのまま出力
-					if ( abs(Point.x-Point_out.x) < 20 && abs(Point.y-Point_out.y) < 20){	
+					if ( abs(Point.x-Point_out.x) < 10 && abs(Point.y-Point_out.y) < 10){	
 						Point_out = Point;
 					}
 					//そうでないなら前BUFSIZE分のフレームの平均を出力
@@ -141,7 +143,7 @@ void CLEyeCameraCapture::Run()
 						}
 						Point_out.x = Point_out.x/Point_buf.size();
 						Point_out.y = Point_out.y/Point_buf.size();
-					}*/
+					}
 					/*else{
 						Point_out.x = 0; Point_out.y = 0;
 						Point_ave.x = 0; Point_ave.y = 0;
@@ -169,21 +171,21 @@ void CLEyeCameraCapture::Run()
 						Point_out.x = Point_out.x/Point_buf2.size();
 						Point_out.y = Point_out.y/Point_buf2.size();
 					}*/
-			/*	}
+				}
 			}else{
 				if( !Point_buf.empty() ){
 				while( !Point_buf.empty() )
 					Point_buf.pop_front();
 				}
-			}*/
+			}
 			WaitForSingleObject(mutex, INFINITE);
 			if(cam_num == 0 ){
-				cam_coord[0] = Point_out.x;
-				cam_coord[1] = Point_out.y;
+				cam_coord[0] = Point_out.x-320.0;
+				cam_coord[1] = Point_out.y-240.0;
 			}else if(cam_num == 1){
-				cam_coord[2] = Point_out.x;
+				cam_coord[2] = Point_out.x-320.0;
 			}
-			cvCircle(pCapImage, Point_out, 3, CV_RGB(0,0,0),-1);
+			cvCircle(pCapImage, Point_out, 10, CV_RGB(0,0,0),-1);
 			cvShowImage(_windowName, pCapImage);
 			//    //
 
