@@ -9,6 +9,7 @@
 //09.28 デバッグ関連を追加，メソッドをxyとzに分離
 //09.29 余計な点を除去
 //10.01 除去する点をxy: 右端, z: 左端に設定
+//10.05 カメラ配置の変更に伴い，xzとyで作り直し
 //---------------------------------------------------------------
 
 #include "detection_thread.h"
@@ -100,7 +101,8 @@ bool descendingorder(cv::Point2d a, cv::Point2d b){
 }
 
 
-cv::Point2d getpointxy(vector<cv::Point2d> averages){
+cv::Point2d getpointfromcam1(vector<cv::Point2d> averages){
+/*
 	//x座標昇順ソート
 	std::sort (averages.begin(), averages.end(), ascendingorder);
 	
@@ -109,7 +111,7 @@ cv::Point2d getpointxy(vector<cv::Point2d> averages){
 	if( (averages[n-1].x - averages[0].x) > 5*(averages[n-1].x - averages[n-2].x) ){
 		averages.pop_back();
 	};
-	
+	*/
 	//重心を求める
 	cv::Point2d sum;// = accumulate( averages.begin(), averages.end(), 0 ); /// averages.size();
 	for( int i = 0; i < averages.size(); ++i ){
@@ -123,7 +125,8 @@ cv::Point2d getpointxy(vector<cv::Point2d> averages){
 	return viewpoint;
 }
 
-cv::Point2d getpointz(vector<cv::Point2d> averages){
+cv::Point2d getpointfromcam2(vector<cv::Point2d> averages){
+/*
 	//反対側のマーカーが検出された場合の動作
 	if(averages.size() > 2){
 		//x座標降順ソート
@@ -131,7 +134,7 @@ cv::Point2d getpointz(vector<cv::Point2d> averages){
 		//一番右端（x座標小）の点を除く
 		averages.pop_back();
 	}
-
+	*/
 	//重心を求める
 	cv::Point2d sum;
 	for( int i = 0; i < averages.size(); ++i ){
@@ -146,23 +149,23 @@ cv::Point2d getpointz(vector<cv::Point2d> averages){
 }
 
 
-cv::Point2d getviewpointxy(cv::Mat gray_img){
+cv::Point2d getviewpointxz(cv::Mat gray_img){
 	vector<cv::Point2d> averages = getviewpoint(gray_img);
 	//9/27追加 yada
 	if(averages.size() < 2 ){
 		return cv::Point2d(-1,-1);
 	}
-	cv::Point2d viewpoint = getpointxy(averages);
+	cv::Point2d viewpoint = getpointfromcam1(averages);
 	return(viewpoint);
 }
 
-cv::Point2d getviewpointz(cv::Mat gray_img){
+cv::Point2d getviewpointy(cv::Mat gray_img){
 	vector<cv::Point2d> averages = getviewpoint(gray_img);
 
 	//9/27追加 yada
 	if(averages.size() < 2 ){
 		return cv::Point2d(-1,-1);
 	}
-	cv::Point2d viewpoint = getpointz(averages);
+	cv::Point2d viewpoint = getpointfromcam2(averages);
 	return(viewpoint);
 }
