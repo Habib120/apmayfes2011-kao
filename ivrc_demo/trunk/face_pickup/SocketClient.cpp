@@ -2,6 +2,10 @@
 #include <winsock2.h>
 #include "network.h"
 
+SocketClient::SocketClient(std::string host) : _host(host)
+{
+}
+
 void SocketClient::Send(std::string message)
 {
 #ifndef _DEBUG
@@ -15,7 +19,6 @@ void SocketClient::Send(std::string message)
 	 char *deststr;
 	 unsigned int **addrptr;
 
-	 deststr = "10.0.0.2";
 
 	 if (WSAStartup(MAKEWORD(2,0), &wsaData) != 0) {
 		 printf("WSAStartup failed\n");
@@ -31,11 +34,11 @@ void SocketClient::Send(std::string message)
 	 server.sin_family = AF_INET;
 	 server.sin_port = htons(CLIENT_PORT);
 
-	 server.sin_addr.S_un.S_addr = inet_addr(deststr);
+	 server.sin_addr.S_un.S_addr = inet_addr(_host.c_str());
 	 if (server.sin_addr.S_un.S_addr == 0xffffffff) {
 		 struct hostent *host;
 
-		 host = gethostbyname(deststr);
+		 host = gethostbyname(_host.c_str());
 		 if (host == NULL) {
 			 if (WSAGetLastError() == WSAHOST_NOT_FOUND) {
 				 printf("host not found : %s\n", deststr);

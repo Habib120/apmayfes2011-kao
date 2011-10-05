@@ -73,7 +73,7 @@ private:
 
 	HANDLE hThread;
 	HANDLE hMutex;
-	std::queue <string> inque;
+	std::string input;
 	std::queue <string> outque;
 	virtual void SetupTimeout(COMMTIMEOUTS* timeout);
 	virtual void SetupCommConfig(COMMCONFIG* comcfg);

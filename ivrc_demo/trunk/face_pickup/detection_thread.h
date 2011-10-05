@@ -101,7 +101,7 @@ protected:
 	boost::thread *loop_thread;
 	bool stop;
 	double cPage;
-	void processReceivedText(std::string rcv, SocketClient *client);
+	void processReceivedText(std::string rcv, SocketClient *client_local, SocketClient *client_remote);
 	std::vector<int> getOpenPages(std::vector<int> sensor_values);
 public:
 	BookObserver();
