@@ -15,7 +15,7 @@ extern int cam_select;
 //À•W‚ğ‘—M‚·‚é
 void InfraredPersonDetectionLoop::operator()()
 {
-	SocketClient client;
+	SocketClient client("127.0.0.1");
 	while(1){
 		WaitForSingleObject(mutex, INFINITE);
 		coord[0] = cam_coord[0];

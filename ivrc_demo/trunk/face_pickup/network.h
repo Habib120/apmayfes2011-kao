@@ -7,7 +7,10 @@
 
 class SocketClient
 {
+private:
+	std::string _host;
 public:
+	SocketClient(std::string host);
 	void Send(std::string message);
 };
 

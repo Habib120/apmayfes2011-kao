@@ -65,16 +65,21 @@ void SerialAdapter::Write(string str){
 void SerialAdapter::Read(string* str){
 	//ロックした後受信キューから先頭の文字列を取り出す
 	WaitForSingleObject(hMutex,INFINITE);
-	if(!inque.empty()){
-		(*str)=inque.front();
-		inque.pop();
+	//if(!inque.empty()){
+	//	(*str)=inque.top();
+	//	inque.pop();
+	//}
+	if (input != "")
+	{
+		(*str) = input;
 	}
 	ReleaseMutex(hMutex);
 }
 int SerialAdapter::GetReadQueueCount(){
 	int num;
 	WaitForSingleObject(hMutex,INFINITE);
-	num=inque.size();
+	//num=inque.size();
+	num = input != "" ? 1 : 0;
 	ReleaseMutex(hMutex);
 	return num;
 }
@@ -174,7 +179,7 @@ void SerialAdapter::Loop(){
 						//改行で分けてキューに追加
 						if(res[x]=='\r' && res[x+1]=='\n'){
 							string sub = res.substr(0,x+2);
-							inque.push(sub);
+							input = sub;
 							res=res.substr(x+2);
 							x=0;
 						}
