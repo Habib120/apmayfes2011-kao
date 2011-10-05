@@ -110,10 +110,10 @@ void CLEyeCameraCapture::Run()
 			//cvShowImage(_windowName, pCapImage);
 			CaptureMat = pCapImage;
 			if ( cam_num == 0 ){
-				Point = getviewpointxy(CaptureMat);
+				Point = getviewpointxz(CaptureMat);
 			}
 			else if( cam_num == 1 ){
-				Point = getviewpointz(CaptureMat);
+				Point = getviewpointy(CaptureMat);
 			}
 			
 			//10/1デバッグ用//
@@ -179,13 +179,12 @@ void CLEyeCameraCapture::Run()
 				}
 			}
 			WaitForSingleObject(mutex, INFINITE);
-			if(cam_num == 0 ){
+			if(cam_num == 0 ){//10.05 19:30 カメラ配置の変更(kudo)
 
-				cam_coord[0] = Point_out.x-320.0;
-				//cam_coord[1] = Point_out.y-240.0;
+				cam_coord[0] = Point_out.x-320.0;//x
+				cam_coord[2] = Point_out.y-240.0;//z（斜めなのでやや不正確）
 			}else if(cam_num == 1){
-				cam_coord[2] = Point_out.x-320.0;
-				cam_coord[1] = Point_out.y-240.0;
+				cam_coord[1] = Point_out.y-240.0;//y
 			}
 			cvCircle(pCapImage, Point_out, 10, CV_RGB(0,0,0),-1);
 			cvShowImage(_windowName, pCapImage);
