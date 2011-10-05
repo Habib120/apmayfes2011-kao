@@ -131,7 +131,7 @@ void CLEyeCameraCapture::Run()
 				}else{
 					Point_buf.pop_front();
 					//入力が１フレーム前の出力と20ピクセル四方以内なら入力をそのまま出力
-					if ( abs(Point.x-Point_out.x) < 10 && abs(Point.y-Point_out.y) < 10){	
+					if ( abs(Point.x-Point_out.x) < 20 && abs(Point.y-Point_out.y) < 20){	
 						Point_out = Point;
 					}
 					//そうでないなら前BUFSIZE分のフレームの平均を出力
@@ -180,10 +180,12 @@ void CLEyeCameraCapture::Run()
 			}
 			WaitForSingleObject(mutex, INFINITE);
 			if(cam_num == 0 ){
+
 				cam_coord[0] = Point_out.x-320.0;
-				cam_coord[1] = Point_out.y-240.0;
+				//cam_coord[1] = Point_out.y-240.0;
 			}else if(cam_num == 1){
 				cam_coord[2] = Point_out.x-320.0;
+				cam_coord[1] = Point_out.y-240.0;
 			}
 			cvCircle(pCapImage, Point_out, 10, CV_RGB(0,0,0),-1);
 			cvShowImage(_windowName, pCapImage);
