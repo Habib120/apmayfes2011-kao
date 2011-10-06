@@ -43,7 +43,7 @@ std::vector<int> BookObserver::getOpenPages(std::vector<int> sensor_values)
 	return open_pages;
 }
 
-void BookObserver::processReceivedText(std::string rcv, SocketClient *client_local, SocketClient *client_remote)
+void BookObserver::processReceivedText(std::string rcv, SocketClient *client1, SocketClient *client2)
 {
 	boost::char_separator<char> sep(" ");
 	boost::tokenizer<boost::char_separator<char>> tokenizer(rcv, sep);
@@ -80,21 +80,21 @@ void BookObserver::processReceivedText(std::string rcv, SocketClient *client_loc
 	}
 	boost::trim(msg);
 	//std::cout << msg << endl;
-    client_local->Send(msg);
-    client_remote->Send(msg);
+    client1->Send(msg);
+    client2->Send(msg);
 }
 
 void BookObserver::operator()()
 {
 	string rcv;
 	serial->Start();
-	SocketClient client_local("127.0.0.1");
-    SocketClient client_remote("10.0.0.3");
+	SocketClient client1("10.0.0.2");
+    SocketClient client2("10.0.0.1");
 	while (!stop)
 	{
 		if (serial->GetReadQueueCount() > 0) {
 			serial->Read(&rcv);
-			processReceivedText(rcv, &client_local, &client_remote);
+			processReceivedText(rcv, &client1, &client2);
 		}
 	}
 }
